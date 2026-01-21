@@ -1,7 +1,7 @@
-package com.bsuir_finder.feature.service;
+package com.bsuir_finder.service;
 
-import com.bsuir_finder.feature.entity.Token;
-import com.bsuir_finder.feature.repository.TokenRepository;
+import com.bsuir_finder.entity.TokenEntity;
+import com.bsuir_finder.repository.TokenRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,11 +15,11 @@ public class TokenService {
         this.tokenRepository = tokenRepository;
     }
 
-    public Optional<Token> findByToken(String token) {
+    public Optional<TokenEntity> findByToken(String token) {
         return tokenRepository.findByToken(token);
     }
 
-    public Token save(Token token) {
-        return tokenRepository.save(token);
+    public TokenEntity save(TokenEntity tokenEntity) {
+        return tokenRepository.save(tokenEntity);
     }
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Please sign in</title>
+    <title>Please sign up</title>
     <link th:href="@{/default-ui.css}" rel="stylesheet" />
 </head>
 <body>
@@ -15,11 +15,9 @@
         <h2>Please sign in</h2>
 
 
-        <div> th:if="${message}" class="alert alert-success">
+        <div th:if="${message}" class="alert alert-success">
             <p th:text="${message}"></p>
         </div>
-
-
 
         <p>
             <label for="firstName" class="screenreader">First Name</label>
@@ -32,8 +30,18 @@
         </p>
 
         <p>
+            <label for="username" class="screenreader">Username</label>
+            <input type="text" th:field="*{username}" name="Username" placeholder="Username" required>
+        </p>
+
+<!--        <p>-->
+<!--            <label for="email" class="screenreader">Email</label>-->
+<!--            <input type="text" th:field="*{email}" placeholder="Email" style="height: auto; width=100%; font-size: 1rem; padding: .5rem; box-sizing: border-box" required autofocus>-->
+<!--        </p>-->
+
+        <p>
             <label for="email" class="screenreader">Email</label>
-            <input type="text" th:field="*{email}" placeholder="Email" style="height: auto; width=100%; font-size: 1rem; padding: .5rem; box-sizing: border-box" required autofocus>
+            <input type="text" th:field="*{email}" name="Email" placeholder="Email" required>
         </p>
 
         <p>

@@ -57,9 +57,13 @@ public class UserService {
         var entityToSave = new UserEntity(
                 null,
                 userToCreate.email(),
+                userToCreate.username(),
                 userToCreate.password(),
+                userToCreate.firstName(),
+                userToCreate.lastName(),
                 Role.USER,
                 userToCreate.createdAt(),
+                userToCreate.enabled(),
                 userToCreate.userStatus()
         );
 

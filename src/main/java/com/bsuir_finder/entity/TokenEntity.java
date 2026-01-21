@@ -1,15 +1,16 @@
-package com.bsuir_finder.feature.entity;
+package com.bsuir_finder.entity;
 
+import com.bsuir_finder.dto.enums.TokenType;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Table(name = "token")
 @Entity
-public class Token {
+public class TokenEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -18,6 +19,12 @@ public class Token {
             nullable = false
     )
     private String token;
+
+    @Column(
+            name = "token_type"
+    )
+    @Enumerated(EnumType.STRING)
+    private TokenType tokenType;
 
     @Column(
             name = "created_at",
@@ -41,13 +48,18 @@ public class Token {
             nullable = false,
             name = "user_id"
     )
-    private UserInfoEntity user;
+    private UserEntity user;
 
-    public Token() {
+    public TokenEntity() {
     }
 
-    public Token(String token, LocalDateTime createdAt, LocalDateTime expiresAt, UserInfoEntity user) {
+    public TokenEntity(String token,
+                       TokenType tokenType,
+                       LocalDateTime createdAt,
+                       LocalDateTime expiresAt,
+                       UserEntity user) {
         this.token = token;
+        this.tokenType = tokenType;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
         this.user = user;
@@ -65,9 +77,18 @@ public class Token {
         return token;
     }
 
+    public void setTokenType(TokenType tokenType) {
+        this.tokenType = tokenType;
+    }
+
+    public TokenType getTokenType() {
+        return tokenType;
+    }
+
     public void setToken(String token) {
         this.token = token;
     }
+
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
@@ -93,11 +114,11 @@ public class Token {
         this.confirmedAt = confirmedAt;
     }
 
-    public UserInfoEntity getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(UserInfoEntity user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 }

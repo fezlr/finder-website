@@ -1,75 +1,69 @@
-package com.bsuir_finder.feature.service;
+package com.bsuir_finder.service;
 
-import com.bsuir_finder.feature.entity.Token;
-import com.bsuir_finder.feature.entity.UserInfoEntity;
-import com.bsuir_finder.feature.repository.UserDRepository;
-import org.springframework.cglib.core.Local;
+import com.bsuir_finder.dto.enums.Role;
+import com.bsuir_finder.entity.TokenEntity;
+import com.bsuir_finder.entity.UserEntity;
+import com.bsuir_finder.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-
-    private final UserDRepository userDRepository;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
+    private final EmailService emailService;
 
-    public CustomUserDetailsService(UserDRepository userDRepository, PasswordEncoder passwordEncoder, TokenService tokenService) {
-        this.userDRepository = userDRepository;
+    public CustomUserDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder, TokenService tokenService, EmailService emailService) {
+        this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenService = tokenService;
+        this.emailService = emailService;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userDRepository.findByUsername(username)
+        return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username));
     }
 
-    public void registerUser(UserInfoEntity user) {
-        // check in database if the user with same email address
-        // or username already exist
-
-        userDRepository.findByUsernameOrEmail(user.getUsername(), user.getEmail())
+    public UserEntity registerUser(UserEntity user) {
+        userRepository.findByUsernameOrEmail(user.getUsername(), user.getEmail())
                 .ifPresent(
                         existingUser -> {
                             throw new IllegalStateException("User already exist");
                         }
                 );
-
-        // if a user with the username or email address doesn't exist
-        // then save the user
-        // firstly encode the password
-
         String password = passwordEncoder.encode(user.getPassword());
         user.setPassword(password);
-        userDRepository.save(user);
+        user.setCreatedAt(LocalDate.now());
+        user.setRole(Role.USER);
+        userRepository.save(user);
 
-        // send an email with validation link with token
-        // user click the form to confirm
-        // after confirmation user start being enabled
-
-        Token confirmationToken = new Token(
+        TokenEntity confirmationToken = new TokenEntity(
                 UUID.randomUUID().toString(),
+                null,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),
                 user
         );
         tokenService.save(confirmationToken);
 
-        System.out.println(confirmationToken.getToken());
+        emailService.send(user.getEmail(), confirmationToken.getToken());
 
+        return user;
     }
 
     public void confirmToken(String token) {
-        Token confirmedToken = tokenService.findByToken(token)
+        TokenEntity confirmedToken = tokenService.findByToken(token)
                 .orElseThrow(
                         () -> new IllegalArgumentException("Token not found")
                 );
@@ -77,8 +71,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new IllegalArgumentException("User already verified");
         }
 
-        LocalDateTime expiresAt = confirmedToken.getExpiresAt();
-        if (expiresAt.isBefore(LocalDateTime.now())) {
+        if (confirmedToken.getExpiresAt().isBefore(LocalDateTime.now())) {
             throw new IllegalArgumentException("Token expired");
         }
 
@@ -87,8 +80,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         enableUser(confirmedToken.getUser());
     }
 
-    private void enableUser(UserInfoEntity user) {
+    private void enableUser(UserEntity user) {
         user.setEnabled(true);
-        userDRepository.save(user);
+        userRepository.save(user);
     }
 }
