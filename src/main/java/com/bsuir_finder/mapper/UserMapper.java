@@ -4,8 +4,6 @@ import com.bsuir_finder.dto.User;
 import com.bsuir_finder.entity.UserEntity;
 import org.springframework.stereotype.Component;
 
-// id email username firstName lastName password role createdAt enabled userStatus
-
 @Component
 public class UserMapper {
     public User toUser(UserEntity userEntity) {

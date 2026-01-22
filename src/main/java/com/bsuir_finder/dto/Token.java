@@ -22,6 +22,7 @@ public record Token(
         LocalDateTime expiresAt,
 
         LocalDateTime confirmedAt,
+
         @NotNull
         User user
 ) {

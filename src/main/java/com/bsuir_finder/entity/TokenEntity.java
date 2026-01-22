@@ -3,6 +3,7 @@ package com.bsuir_finder.entity;
 import com.bsuir_finder.dto.enums.TokenType;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Table(name = "token")
@@ -53,15 +54,19 @@ public class TokenEntity {
     public TokenEntity() {
     }
 
-    public TokenEntity(String token,
+    public TokenEntity(Long id,
+                       String token,
                        TokenType tokenType,
                        LocalDateTime createdAt,
                        LocalDateTime expiresAt,
+                       LocalDateTime confirmedAt,
                        UserEntity user) {
+        this.id = id;
         this.token = token;
         this.tokenType = tokenType;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
+        this.confirmedAt = confirmedAt;
         this.user = user;
     }
 
