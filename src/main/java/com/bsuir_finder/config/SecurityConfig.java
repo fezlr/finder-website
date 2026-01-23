@@ -20,11 +20,15 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(
+        http
+                .authorizeHttpRequests(
                         req -> req
-                                .requestMatchers("/register/**").permitAll()
+                                .requestMatchers("/register/**", "/css/**", "/js/**")
+                                .permitAll()
                                 .anyRequest().authenticated()
-                ).formLogin(Customizer.withDefaults())
+                )
+                .formLogin(
+                        Customizer.withDefaults())
                 .logout(Customizer.withDefaults())
                 .userDetailsService(userDetailsService);
 

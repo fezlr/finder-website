@@ -2,7 +2,9 @@ package com.bsuir_finder.service;
 
 import com.bsuir_finder.dto.User;
 import com.bsuir_finder.repository.UserRepository;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserValidationService {
 
     private final UserRepository userRepository;
