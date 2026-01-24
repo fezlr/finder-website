@@ -61,7 +61,7 @@ public class UserEntity implements UserDetails {
     @Column(
             name = "enabled"
     )
-    private Boolean enabled;
+    private boolean enabled;
 
     @Column(
             name = "created_at",

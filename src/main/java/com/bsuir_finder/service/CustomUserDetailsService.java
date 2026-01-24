@@ -2,12 +2,13 @@ package com.bsuir_finder.service;
 
 import com.bsuir_finder.dto.User;
 import com.bsuir_finder.dto.enums.Role;
-import com.bsuir_finder.dto.enums.TokenType;
 import com.bsuir_finder.dto.enums.UserStatus;
 import com.bsuir_finder.entity.TokenEntity;
 import com.bsuir_finder.entity.UserEntity;
 import com.bsuir_finder.mapper.UserMapper;
 import com.bsuir_finder.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
+    private static final Logger log = LoggerFactory.getLogger(CustomUserDetailsService.class);
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
@@ -44,13 +46,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public User registerUser(User userToCreate) {
-
-        /*TODO:
-        restrictions for userToCreate
-
-        checks:
-        email, username, enabled(), UserStatus
-         */
+        log.info("Called registerUser");
 
         userValidationService.validateNewUser(userToCreate);
 
@@ -65,7 +61,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 userToCreate.lastName(),
                 Role.USER,
                 LocalDate.now(),
-                userToCreate.enabled(),
+                false,
                 UserStatus.PENDING
         );
 
@@ -79,14 +75,16 @@ public class CustomUserDetailsService implements UserDetailsService {
                 entityToSave
         );
 
+        var userToSave = userRepository.save(entityToSave);
+
         tokenService.save(confirmationToken);
         emailService.send(userToCreate.email(), confirmationToken.getToken());
 
-        var userToSave = userRepository.save(entityToSave);
         return mapper.toUser(userToSave);
     }
 
     public void confirmToken(String token) {
+        log.info("Called confirmToken");
         TokenEntity confirmedToken = tokenService.findToken(token)
                 .orElseThrow(
                         () -> new IllegalArgumentException("Token not found")

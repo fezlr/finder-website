@@ -12,11 +12,9 @@ import java.util.Optional;
 public class TokenService {
 
     private final TokenRepository tokenRepository;
-    private final TokenMapper mapper;
 
-    public TokenService(TokenRepository tokenRepository, TokenMapper mapper) {
+    public TokenService(TokenRepository tokenRepository) {
         this.tokenRepository = tokenRepository;
-        this.mapper = mapper;
     }
 
     public Optional<TokenEntity> findToken(String token) {

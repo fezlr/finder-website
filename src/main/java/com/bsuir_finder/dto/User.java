@@ -32,9 +32,6 @@ public record User(
         @NotNull
         LocalDate createdAt,
 
-        @NotNull
-        Boolean enabled,
-
         UserStatus userStatus
 ) {
 }

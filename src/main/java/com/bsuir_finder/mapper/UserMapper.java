@@ -16,7 +16,6 @@ public class UserMapper {
                 userEntity.getPassword(),
                 userEntity.getRole(),
                 userEntity.getCreatedAt(),
-                userEntity.getEnabled(),
                 userEntity.getUserStatus()
         );
     }
@@ -31,7 +30,7 @@ public class UserMapper {
                 user.password(),
                 user.role(),
                 user.createdAt(),
-                user.enabled(),
+                false,
                 user.userStatus()
         );
     }
