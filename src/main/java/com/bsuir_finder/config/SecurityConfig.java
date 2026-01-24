@@ -29,11 +29,12 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(
                         req -> req
-                                .requestMatchers("/register/**", "/css/**", "/js/**", "/login/**", "/api/auth/**").permitAll()
+                                .requestMatchers("/register/**", "/css/**", "/js/**", "/login/**", "/api/auth/**", "/home").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(req -> req
                         .loginPage("/login")
+                        .failureUrl("/login?error")
                         .defaultSuccessUrl("/home", true)
                         .permitAll()
                 )

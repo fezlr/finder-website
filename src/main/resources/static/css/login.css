@@ -60,3 +60,14 @@ body {
 .login-card button:hover {
     background: #4a7be0;
 }
+
+.error-box {
+    background: #ffecec;
+    color: #d93025;
+    border: 1px solid #f5c2c7;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 14px;
+}

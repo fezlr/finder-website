@@ -9,13 +9,18 @@
 <body>
 <div class="login-container">
     <div class="login-card">
+
+        <div th:if="${param.error}" class="error-box">
+            Invalid username or password
+        </div>
+
         <h2>Login</h2>
 
         <form method="post" action="/login">
             <input id="username" name="username" placeholder="Username" required>
             <input id="password" name="password" type="password" placeholder="Password" required>
 
-            <input type="hidden" id="csrfToken" th:value="${_csrf.token}">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
             <button type="submit">Login</button>
         </form>
