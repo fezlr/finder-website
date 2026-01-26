@@ -9,14 +9,14 @@ body {
     background: #f5f7fa;
 }
 
-.login-container {
+.home-container {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.login-card {
+.home-card {
     width: 360px;
     background: #ffffff;
     padding: 32px;
@@ -24,27 +24,7 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
-.login-card h2 {
-    margin-bottom: 24px;
-    text-align: center;
-    font-weight: 600;
-}
-
-.login-card input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 14px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-.login-card input:focus {
-    outline: none;
-    border-color: #5b8def;
-}
-
-.login-card button {
+.button-profile button {
     width: 100%;
     padding: 12px;
     background: #5b8def;
@@ -56,17 +36,23 @@ body {
     margin-top: 8px;
 }
 
-.login-card button:hover {
+.button-forms button {
+    width: 100%;
+    padding: 12px;
+    background: #5b8def;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+
+.button-profile button:hover {
     background: #4a7be0;
 }
 
-.error-box {
-    background: #ffecec;
-    color: #d93025;
-    border: 1px solid #f5c2c7;
-    padding: 10px 12px;
-    border-radius: 8px;
-    font-size: 13px;
-    text-align: center;
-    margin-bottom: 14px;
+.button-forms button:hover {
+    background: #4a7be0;
 }
