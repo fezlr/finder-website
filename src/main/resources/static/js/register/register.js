@@ -1,4 +1,4 @@
-async function register() {
+async function save() {
     const response = await fetch("api/auth/register", {
         method: "POST",
         headers: {
@@ -6,8 +6,6 @@ async function register() {
             "X-CSRF-TOKEN": document.getElementById("csrfToken").value
         },
         body: JSON.stringify({
-            firstName: document.getElementById("firstName").value,
-            lastName: document.getElementById("lastName").value,
             username: document.getElementById("username").value,
             email: document.getElementById("email").value,
             password: document.getElementById("password").value
