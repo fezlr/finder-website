@@ -18,12 +18,6 @@ public record User(
         String username,
 
         @NotNull
-        String firstName,
-
-        @NotNull
-        String lastName,
-
-        @NotNull
         String password,
 
         @NotNull

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit profile</title>
+    <link th:href="@{/css/profile.css}" rel="stylesheet" >
+</head>
+
+<script th:src="@{/js/profile/profile.js}"></script>
+
+<body>
+<div class="profile-container">
+    <div class="profile-card">
+
+        <div class="photo-wrapper">
+            <label for="photoInput">
+                <img id="photoPreview"
+                     src="avatar.jpg"
+                     alt="Profile photo">
+            </label>
+            <input type="file"
+                   id="photoInput"
+                   accept="image/*"
+                   hidden>
+        </div>
+
+        <form class="profile-form">
+
+            <input id="firstName" placeholder="First name" required>
+            <input id="lastName" placeholder="Last name" required>
+            <input id="birthDate" type="date" required>
+
+            <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="MALE">Male</option>
+                <option value="FEMALE">Female</option>
+                <option value="OTHER">Other</option>
+            </select>
+
+
+            <input id="city" placeholder="City" required>
+
+            <textarea id="aboutMe" placeholder="About me" required></textarea>
+
+            <input type="hidden" id="csrfToken" th:value="${_csrf.token}">
+
+            <button type="submit">Save profile</button>
+        </form>
+
+    </div>
+</div>
+
+<script th:src="@{/js/profile/profile_photo.js}"></script>
+
+</body>
+</html>

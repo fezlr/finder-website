@@ -1,8 +1,6 @@
 package com.bsuir_finder.service;
 
-import com.bsuir_finder.dto.Token;
 import com.bsuir_finder.entity.TokenEntity;
-import com.bsuir_finder.mapper.TokenMapper;
 import com.bsuir_finder.repository.TokenRepository;
 import org.springframework.stereotype.Service;
 

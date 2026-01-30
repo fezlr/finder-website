@@ -6,7 +6,7 @@
     <link th:href="@{/css/register.css}" rel="stylesheet">
 </head>
 
-<script th:src="@{/js/register.js}"></script>
+<script th:src="@{/js/register/register.js}"></script>
 
 <body>
 <div class="register-container">
@@ -14,8 +14,6 @@
         <h2>Create account</h2>
 
         <form onsubmit="register(); return false;">
-            <input id="firstName" placeholder="First name" required>
-            <input id="lastName" placeholder="Last name" required>
             <input id="username" placeholder="Username" required>
             <input id="email" placeholder="Email" required>
             <input id="password" type="password" placeholder="Password" required>

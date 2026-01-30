@@ -23,8 +23,8 @@ public class AuthApiController {
     public ResponseEntity<User> registerUser(
             @RequestBody User user
     ) {
-         return ResponseEntity.ok()
-                 .body(customUserDetailsService.registerUser(user));
+         return ResponseEntity
+                 .ok(customUserDetailsService.registerUser(user));
     }
 
     @GetMapping("/confirmToken")

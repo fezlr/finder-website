@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #f4f6f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-card {
+    width: 380px;
+    background: #fff;
+    padding: 32px;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0,0,0,.08);
+}
+
+/* PHOTO */
+.photo-wrapper {
+    text-align: center;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.photo-wrapper img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid #e0e0e0;
+}
+
+.photo-hint {
+    display: block;
+    font-size: 13px;
+    color: #5b8def;
+    margin-top: 8px;
+}
+
+/* FORM */
+.profile-form input,
+.profile-form select,
+.profile-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 14px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.profile-form textarea {
+    resize: none;
+    height: 90px;
+}
+
+.profile-form button {
+    width: 100%;
+    padding: 12px;
+    background: #5b8def;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.profile-form button:hover {
+    background: #4a7be0;
+}

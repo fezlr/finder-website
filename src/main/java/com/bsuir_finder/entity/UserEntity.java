@@ -40,18 +40,6 @@ public class UserEntity implements UserDetails {
     private String password;
 
     @Column(
-            name = "first_name",
-            nullable = false
-    )
-    private String firstName;
-
-    @Column(
-            name = "last_name",
-            nullable = false
-    )
-    private String lastName;
-
-    @Column(
             name = "role",
             nullable = false
     )
@@ -73,6 +61,10 @@ public class UserEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "profile_id")
+    private ProfileEntity profile;
+
     public UserEntity() {
     }
 
@@ -80,22 +72,20 @@ public class UserEntity implements UserDetails {
                       String email,
                       String username,
                       String password,
-                      String firstName,
-                      String lastName,
                       Role role,
                       LocalDate createdAt,
                       Boolean enabled,
-                      UserStatus userStatus) {
+                      UserStatus userStatus,
+                      ProfileEntity profile) {
         this.id = id;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.role = role;
         this.enabled = enabled;
         this.createdAt = createdAt;
         this.userStatus = userStatus;
+        this.profile = profile;
     }
 
     public Long getId() {
@@ -120,22 +110,6 @@ public class UserEntity implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public Role getRole() {
@@ -168,6 +142,14 @@ public class UserEntity implements UserDetails {
 
     public void setUserStatus(UserStatus userStatus) {
         this.userStatus = userStatus;
+    }
+
+    public ProfileEntity getProfileEntity() {
+        return profile;
+    }
+
+    public void setProfileEntity(ProfileEntity profileEntity) {
+        this.profile = profileEntity;
     }
 
     @Override
@@ -209,11 +191,11 @@ public class UserEntity implements UserDetails {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(email, that.email) && Objects.equals(username, that.username) && Objects.equals(password, that.password) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && role == that.role && Objects.equals(enabled, that.enabled) && Objects.equals(createdAt, that.createdAt) && userStatus == that.userStatus;
+        return enabled == that.enabled && Objects.equals(id, that.id) && Objects.equals(email, that.email) && Objects.equals(username, that.username) && Objects.equals(password, that.password) && role == that.role && Objects.equals(createdAt, that.createdAt) && userStatus == that.userStatus;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, username, password, firstName, lastName, role, enabled, createdAt, userStatus);
+        return Objects.hash(id, email, username, password, role, enabled, createdAt, userStatus);
     }
 }
