@@ -1,4 +1,4 @@
-package com.bsuir_finder.config;
+package com.bsuir_finder.security.config;
 
 import com.bsuir_finder.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
@@ -29,7 +29,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(
                         req -> req
-                                .requestMatchers("/register/**", "/css/**", "/js/**", "/login/**", "/api/auth/**", "/**").permitAll()
+                                .requestMatchers("/register/**", "/css/**", "/js/**", "/login/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(req -> req

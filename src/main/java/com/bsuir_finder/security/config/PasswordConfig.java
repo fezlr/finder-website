@@ -1,4 +1,4 @@
-package com.bsuir_finder.config;
+package com.bsuir_finder.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

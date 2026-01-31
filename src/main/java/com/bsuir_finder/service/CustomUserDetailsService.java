@@ -8,6 +8,7 @@ import com.bsuir_finder.entity.TokenEntity;
 import com.bsuir_finder.entity.UserEntity;
 import com.bsuir_finder.mapper.UserMapper;
 import com.bsuir_finder.repository.UserRepository;
+import com.bsuir_finder.security.CustomUserDetails;
 import com.bsuir_finder.validation.UserValidation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,8 +45,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(username));
+        var user = userRepository.findByUsername(username)
+                .orElseThrow(() ->
+                        new UsernameNotFoundException(username));
+
+        return new CustomUserDetails(user);
     }
 
     @Transactional
@@ -90,7 +94,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 entityToSave
         );
 
-        entityToSave.setProfileEntity(profileToSave);
+        entityToSave.setProfile(profileToSave);
         profileToSave.setUser(entityToSave);
 
         var userToSave = userRepository.save(entityToSave);

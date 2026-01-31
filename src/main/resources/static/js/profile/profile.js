@@ -1,6 +1,6 @@
 async function profile() {
     const response = await fetch("api/profile", {
-        method: "POST",
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
             "X-CSRF-TOKEN": document.getElementById("csrfToken").value
