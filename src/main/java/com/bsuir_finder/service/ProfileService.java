@@ -37,8 +37,14 @@ public class ProfileService {
         profileToSave.setGender(profileToUpdate.gender());
         profileToSave.setCity(profileToUpdate.city());
         profileToSave.setAboutMe(profileToUpdate.aboutMe());
-        profileToSave.setMainPhotoUrl(profileToUpdate.mainPhotoUrl());
 
         return profileMapper.toDto(profileRepository.save(profileToSave));
+    }
+
+    @Transactional
+    public void updateAndSaveMainPhoto(String url) {
+        var profile = authService.getCurrentUser().getProfile();
+        profile.setMainPhotoUrl(url);
+        profileRepository.save(profile);
     }
 }

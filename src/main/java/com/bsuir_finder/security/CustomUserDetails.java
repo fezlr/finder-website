@@ -1,7 +1,6 @@
 package com.bsuir_finder.security;
 
 import com.bsuir_finder.entity.UserEntity;
-import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
