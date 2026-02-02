@@ -1,4 +1,4 @@
-package com.bsuir_finder.cloudinary;
+package com.bsuir_finder.security.config;
 
 import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Value;

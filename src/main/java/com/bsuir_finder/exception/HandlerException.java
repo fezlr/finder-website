@@ -9,11 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
-@Slf4j
-@ControllerAdvice
+@RestControllerAdvice
 public class HandlerException {
 
     private static final Logger log = LoggerFactory.getLogger(HandlerException.class);
@@ -50,8 +53,7 @@ public class HandlerException {
 
     @ExceptionHandler(exception = {
             IllegalArgumentException.class,
-            IllegalStateException.class,
-            MethodArgumentNotValidException.class
+            IllegalStateException.class
     })
     public ResponseEntity<ErrorResponseDto> handlerBadRequest(
             Exception e
@@ -65,5 +67,26 @@ public class HandlerException {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(errorDto);
+    }
+
+    @ExceptionHandler(exception = MethodArgumentNotValidException.class)
+    public ResponseEntity<?> handlerMethodArgumentNotValidExcepiton (
+            MethodArgumentNotValidException e
+    ) {
+        Map<String, String> errors = new HashMap<>();
+
+        e.getBindingResult()
+                .getFieldErrors()
+                .forEach(error ->
+                        errors.put(
+                                error.getField(),
+                                error.getDefaultMessage()
+                        )
+                );
+
+        return ResponseEntity
+                .badRequest()
+                .body(Map.of("errors", errors));
+
     }
 }

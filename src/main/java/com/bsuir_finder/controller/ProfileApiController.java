@@ -1,7 +1,6 @@
 package com.bsuir_finder.controller;
 
-import com.bsuir_finder.cloudinary.FileUpload;
-import com.bsuir_finder.cloudinary.PhotoStorageService;
+import com.bsuir_finder.service.PhotoStorageService;
 import com.bsuir_finder.dto.Profile;
 import com.bsuir_finder.service.ProfileService;
 import org.slf4j.Logger;
@@ -20,11 +19,11 @@ public class ProfileApiController {
     private static final Logger log = LoggerFactory.getLogger(ProfileApiController.class);
     private final ProfileService profileService;
     private final PhotoStorageService photoStorageService;
-    private final FileUpload fileUpload;
 
-    public ProfileApiController(ProfileService profileService, FileUpload fileUpload, PhotoStorageService photoStorageService) {
+    public ProfileApiController(
+            ProfileService profileService,
+            PhotoStorageService photoStorageService) {
         this.profileService = profileService;
-        this.fileUpload = fileUpload;
         this.photoStorageService = photoStorageService;
     }
 

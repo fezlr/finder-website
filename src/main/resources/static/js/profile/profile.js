@@ -15,12 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
+        clearErrors();
 
         const response = await fetch("/api/profile", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRF-TOKEN": document.getElementById("csrfToken").value
+                "X-CSRF-TOKEN": document.getElementById("csrfToken").value,
+                "Accept-Language": navigator.language
             },
             body: JSON.stringify({
                 firstName: document.getElementById("firstName").value,
@@ -33,7 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (!response.ok) {
-            alert(await response.text());
+            const data = await response.json();
+
+            for (const field in data.errors) {
+                showError(field,data.errors[field]);
+            }
             return;
         }
 
@@ -58,3 +64,18 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Profile successfully saved");
     });
 });
+
+function showError(field, message) {
+    const errorDiv = document.getElementById(`error-${field}`);
+    if (errorDiv) {
+        errorDiv.textContent = message;
+        errorDiv.style.display = "block";
+    }
+}
+
+function clearErrors() {
+    document.querySelectorAll(".error").forEach(div => {
+        div.textContent = "";
+        div.style.display = "none";
+    });
+}

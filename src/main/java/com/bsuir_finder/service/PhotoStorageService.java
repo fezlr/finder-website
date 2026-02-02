@@ -1,4 +1,4 @@
-package com.bsuir_finder.cloudinary;
+package com.bsuir_finder.service;
 
 import com.cloudinary.Cloudinary;
 import org.springframework.stereotype.Service;

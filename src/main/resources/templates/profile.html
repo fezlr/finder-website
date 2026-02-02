@@ -25,10 +25,16 @@
         <form class="profile-form">
 
             <input id="firstName" placeholder="First name" required>
+            <div class="error" id="error-firstName"></div>
+
             <input id="lastName" placeholder="Last name" required>
+            <div class="error" id="error-lastName"></div>
+
             <input id="birthDate" type="date" required>
+            <div class="error" id="error-birthDate"></div>
 
             <select id="gender" name="gender" required>
+                <div class="error" id="error-gender"></div>
                 <option value="">Select Gender</option>
                 <option value="MALE">Male</option>
                 <option value="FEMALE">Female</option>
@@ -37,8 +43,10 @@
 
 
             <input id="city" placeholder="City" required>
+            <div class="error" id="error-city"></div>
 
             <textarea id="aboutMe" placeholder="About me" required></textarea>
+            <div class="error" id="error-aboutMe"></div>
 
             <input type="hidden" id="csrfToken" th:value="${_csrf.token}">
 

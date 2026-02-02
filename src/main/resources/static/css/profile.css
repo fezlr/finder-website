@@ -80,3 +80,10 @@ body {
 .profile-form button:hover {
     background: #4a7be0;
 }
+
+.error {
+    color: #d93025;
+    font-size: 13px;
+    margin-top: 4px;
+    display: none;
+}

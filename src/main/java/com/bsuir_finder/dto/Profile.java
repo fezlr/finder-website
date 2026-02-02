@@ -1,32 +1,38 @@
 package com.bsuir_finder.dto;
 
 import com.bsuir_finder.dto.enums.Gender;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 import java.time.Period;
 
-
 public record Profile(
-        @NotBlank
-        @Pattern(regexp = "^(?:[А-ЯЁ][а-яё]{1,30}|[A-Z][a-z]{1,30})$")
+        @NotBlank(message = "{profile.firstname.message.notblank}")
+        @Pattern(regexp = "^(?:[А-ЯЁ][а-яё]{1,30}|[A-Z][a-z]{1,30})$",
+                 message = "{profile.firstname.pattern}")
         String firstName,
 
-        @NotBlank
-        @Pattern(regexp = "^(?:[А-ЯЁ][а-яё]{1,30}|[A-Z][a-z]{1,30})$")
+        @NotBlank(message = "{profile.lastname.message.notblank}")
+        @Pattern(regexp = "^(?:[А-ЯЁ][а-яё]{1,30}|[A-Z][a-z]{1,30})$",
+                 message = "{profile.lastname.message.pattern}")
         String lastName,
 
-        @NotNull
+        @NotNull(message = "{profile.birthdate.message.notnull")
+        @Past(message = "{profile.birthdate.message.past}")
         LocalDate birthDate,
 
+        @NotNull(message = "{profile.gender.message.notnull}")
         Gender gender,
 
+        @Size(max = 30,
+              message = "{profile.city.message.maxsize}")
         String city,
 
+        @Size(max = 400,
+              message = "{profile.aboutme.message.maxsize}")
         String aboutMe,
 
+        @NotNull(message = "{profile.mainphotourl.message.notnull}")
         String mainPhotoUrl
 ) {
 
