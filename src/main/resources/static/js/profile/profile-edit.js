@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: formData
             });
 
-
             if (!photoResponse.ok) {
                 alert("Photo upload failed");
                 return;
