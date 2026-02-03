@@ -4,6 +4,7 @@ import com.bsuir_finder.dto.enums.Gender;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Objects;
 
 @Table(name = "profiles")
@@ -148,6 +149,10 @@ public class ProfileEntity {
 
     public void setMainPhotoUrl(String mainPhotoUrl) {
         this.mainPhotoUrl = mainPhotoUrl;
+    }
+
+    public int getAge() {
+        return Period.between(birthDate, LocalDate.now()).getYears();
     }
 
     @Override

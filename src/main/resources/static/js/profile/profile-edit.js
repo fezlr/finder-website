@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         clearErrors();
 
-        const response = await fetch("/api/profile", {
+        const response = await fetch("/api/profile/edit", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const formData = new FormData();
             formData.append("file", photoInput.files[0]);
 
-            const photoResponse = await fetch("/api/profile/photo", {
+            const photoResponse = await fetch("/api/profile/edit/photo", {
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": document.getElementById("csrfToken").value

@@ -13,14 +13,14 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Map;
 
 @RestController
-@RequestMapping("api/profile")
-public class ProfileApiController {
+@RequestMapping("api/profile/edit")
+public class ProfileEditApiController {
 
-    private static final Logger log = LoggerFactory.getLogger(ProfileApiController.class);
+    private static final Logger log = LoggerFactory.getLogger(ProfileEditApiController.class);
     private final ProfileService profileService;
     private final PhotoStorageService photoStorageService;
 
-    public ProfileApiController(
+    public ProfileEditApiController(
             ProfileService profileService,
             PhotoStorageService photoStorageService) {
         this.profileService = profileService;
@@ -37,7 +37,7 @@ public class ProfileApiController {
     }
 
     @PostMapping("/photo")
-    public ResponseEntity<?> uploadPhoto(
+    public ResponseEntity<Map<String, String>> uploadPhoto(
             @RequestParam("file") MultipartFile file
     ) {
         log.info("Called uploadPhoto()");

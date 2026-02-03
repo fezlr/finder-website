@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <title>Profile</title>
+        <link th:href="@{/css/profile-main.css}" rel="stylesheet">
+    </head>
+
+<body>
+
+<div class="profile-root">
+
+    <div class="card">
+        <div class="photo-area">
+            <img id="mainPhoto" th:src="${profile.mainPhotoUrl != null}? ${profile.mainPhotoUrl} : @{avatar.jpg}" alt="Profile photo" />
+            <div class="photo-badge" id="photoBadge" th:text="${profile.firstName ?: ''} + ', ' + ${profile.age ?: ''}"></div>
+        </div>
+        <div style="margin-top:14px">
+            <h3 style="margin:0 0 8px 0">About</h3>
+            <span th:text="${profile.aboutMe ?: ''}"></span>
+        </div>
+    </div>
+
+<div class="panel">
+    <div class="header">
+        <h1 th:text="${profile.firstName ?: ''} + ' ' + ${profile.lastName ?: ''}"></h1>
+        <div class="actions">
+            <a href="/profile/edit">
+                <button class="btn" id="editBtn">Edit profile</button>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="about">
+        <div class="info-grid">
+
+            <div class="info-row">
+                <label>First name</label>
+                <div th:text="${profile.firstName ?: ''}"></div>
+            </div>
+
+            <div class="info-row">
+                <label>Last name</label>
+                <div th:text="${profile.lastName ?: ''}"></div>
+            </div>
+
+            <div class="info-row">
+                <label>Birth date</label>
+                <div th:text="${profile.birthDate ?: ''}"></div>
+            </div>
+
+            <div class="info-row">
+                <label>City</label>
+                <div th:text="${profile.city ?: ''}"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+<input type="hidden" id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+<!--<script th:src="@{/js/profile-main.js}"></script>-->
+
+</body>
+</html>

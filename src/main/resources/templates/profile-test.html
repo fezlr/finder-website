@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Profile</title>
+    <meta name="description" content="User profile" />
+    <link th:href="@{/css/profile-test.css}" rel="stylesheet" >
+
+</head>
+<body>
+
+<div class="profile-root">
+    <div class="card">
+        <div class="photo-area">
+            <!-- use thymeleaf th:src if needed: th:src="${profile.mainPhotoUrl != null}? ${profile.mainPhotoUrl} : @{/images/avatar-placeholder.png}" -->
+            <img id="mainPhoto" src="avatar.jpg" alt="Profile photo" />
+            <div class="photo-badge" id="photoBadge"></div>
+        </div>
+            <div style="margin-top:14px">
+                <h3 style="margin:0 0 8px 0">About</h3>
+                <p id="aboutText"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="header">
+            <h1 id="displayName">Example</h1>
+            <div class="actions">
+                <button class="btn" id="editBtn">Edit profile</button>
+            </div>
+        </div>
+
+        <div class="about">
+            <div class="info-grid">
+                <div class="info-row">
+                    <label>First name</label>
+                    <div id="firstNameText">Ex1</div>
+                </div>
+                <div class="info-row">
+                    <label>Last name</label>
+                    <div id="lastNameText">Ex2</div>
+                </div>
+
+                <div class="info-row">
+                    <label>Birth date</label>
+                    <div id="birthDateText">Ex3</div>
+                </div>
+
+                <div class="info-row">
+                    <label>City</label>
+                    <div id="cityText">Ex4</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--<div class="modal" id="editModal">-->
+<!--    <div class="modal-card">-->
+<!--        <h3>Edit profile</h3>-->
+<!--        <form id="editForm">-->
+<!--            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">-->
+<!--                <div class="photo-upload">-->
+<!--                    <img id="avatarPreview" class="avatar-sm" src="avatar.jpg" alt="avatar">-->
+<!--                    <div>-->
+<!--                        <label class="btn secondary" for="fileInput">Choose photo</label>-->
+<!--                        <input id="fileInput" name="file" type="file" accept="image/*" style="display:none"/>-->
+<!--                        <div class="error" id="error-file"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div style="text-align:right">-->
+<!--                    <button type="button" class="btn secondary" id="cancelEdit">Cancel</button>-->
+<!--                    <button type="submit" class="btn">Save</button>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="form-grid">-->
+<!--                <div>-->
+<!--                    <label>First name</label>-->
+<!--                    <input id="firstName" name="firstName" type="text" />-->
+<!--                    <div class="error" id="error-firstName"></div>-->
+<!--                </div>-->
+
+<!--                <div>-->
+<!--                    <label>Last name</label>-->
+<!--                    <input id="lastName" name="lastName" type="text" />-->
+<!--                    <div class="error" id="error-lastName"></div>-->
+<!--                </div>-->
+
+<!--                <div>-->
+<!--                    <label>Birth date</label>-->
+<!--                    <input id="birthDate" name="birthDate" type="date" />-->
+<!--                    <div class="error" id="error-birthDate"></div>-->
+<!--                </div>-->
+
+<!--                <div>-->
+<!--                    <label>City</label>-->
+<!--                    <input id="city" name="city" type="text" />-->
+<!--                    <div class="error" id="error-city"></div>-->
+<!--                </div>-->
+
+<!--                <div class="full">-->
+<!--                    <label>About me</label>-->
+<!--                    <textarea id="aboutMe" name="aboutMe"></textarea>-->
+<!--                    <div class="error" id="error-aboutMe"></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+
+<script th:src="@{/js/profile/profile-test.js}"></script>
+
+<input type="hidden" id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+</body>
+</html>
