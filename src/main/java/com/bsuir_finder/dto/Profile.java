@@ -1,6 +1,7 @@
 package com.bsuir_finder.dto;
 
 import com.bsuir_finder.dto.enums.Gender;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ public record Profile(
 
         @NotNull(message = "{profile.birthdate.message.notnull")
         @Past(message = "{profile.birthdate.message.past}")
+        @JsonFormat(pattern = "yyyy-MM-dd")
         LocalDate birthDate,
 
         @NotNull(message = "{profile.gender.message.notnull}")

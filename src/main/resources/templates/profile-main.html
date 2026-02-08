@@ -26,9 +26,7 @@
     <div class="header">
         <h1 th:text="${profile.firstName ?: ''} + ' ' + ${profile.lastName ?: ''}"></h1>
         <div class="actions">
-            <a href="/profile/edit">
-                <button class="btn" id="editBtn">Edit profile</button>
-            </a>
+            <a href="/profile/edit" class="btn" id="editBtn">Edit profile</a>
         </div>
 
     </div>

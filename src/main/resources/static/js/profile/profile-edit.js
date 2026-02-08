@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.querySelector(".profile-form");
     const photoInput = document.getElementById("photoInput");
-    const photoPreview = document.getElementById("photoPreview");
+    const photoPreview = document.getElementById("mainPhotoUrl");
+    let photoData = "";
 
     photoInput.addEventListener("change", () => {
         const file = photoInput.files[0];
@@ -14,25 +15,53 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     form.addEventListener("submit", async (e) => {
+
         e.preventDefault();
         clearErrors();
 
-        const response = await fetch("/api/profile/edit", {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": document.getElementById("csrfToken").value,
-                "Accept-Language": navigator.language
-            },
-            body: JSON.stringify({
-                firstName: document.getElementById("firstName").value,
-                lastName: document.getElementById("lastName").value,
-                birthDate: document.getElementById("birthDate").value,
-                gender: document.getElementById("gender").value,
-                city: document.getElementById("city").value,
-                aboutMe: document.getElementById("aboutMe").value
-            })
-        });
+        const csrfToken = document.querySelector('meta[name="_csrf"]').content;
+        const csrfHeader = document.querySelector('meta[name="_csrf_header"]').content;
+
+        if (photoInput.files.length > 0) {
+                    const formData = new FormData();
+                    formData.append("file", photoInput.files[0]);
+
+                    const photoResponse = await fetch("/api/edit/photo", {
+                        method: "POST",
+                        headers: {
+                            [csrfHeader]: csrfToken
+                        },
+                        body: formData
+                    });
+
+                    if (!photoResponse.ok) {
+                        alert("Photo upload failed");
+                        return;
+                    }
+
+                    photoData = await photoResponse.json();
+                }
+
+        const response = await fetch("/api/edit", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        [csrfHeader]: csrfToken,
+        //                "X-CSRF-TOKEN": document.getElementById("csrfToken").value,
+                        "Accept-Language": navigator.language
+                    },
+                    body: JSON.stringify({
+                        firstName: document.getElementById("firstName").value,
+                        lastName: document.getElementById("lastName").value,
+                        birthDate: document.getElementById("birthDate").value,
+                        gender: document.getElementById("gender").value,
+                        city: document.getElementById("city").value,
+                        aboutMe: document.getElementById("aboutMe").value,
+                        mainPhotoUrl: photoData.url
+                    })
+                });
+
+
 
         if (!response.ok) {
             const data = await response.json();
@@ -41,24 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 showError(field,data.errors[field]);
             }
             return;
-        }
-
-        if (photoInput.files.length > 0) {
-            const formData = new FormData();
-            formData.append("file", photoInput.files[0]);
-
-            const photoResponse = await fetch("/api/profile/edit/photo", {
-                method: "POST",
-                headers: {
-                    "X-CSRF-TOKEN": document.getElementById("csrfToken").value
-                },
-                body: formData
-            });
-
-            if (!photoResponse.ok) {
-                alert("Photo upload failed");
-                return;
-            }
         }
 
         alert("Profile successfully saved");
