@@ -14,7 +14,9 @@ public class ProfileMapper {
                 profileEntity.getGender(),
                 profileEntity.getCity(),
                 profileEntity.getAboutMe(),
-                profileEntity.getMainPhotoUrl()
+                profileEntity.getMainPhotoUrl(),
+                profileEntity.getTelegramUsername(),
+                profileEntity.getInstagramUsername()
         );
     }
 }

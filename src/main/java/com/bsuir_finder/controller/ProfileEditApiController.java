@@ -3,7 +3,6 @@ package com.bsuir_finder.controller;
 import com.bsuir_finder.service.PhotoStorageService;
 import com.bsuir_finder.dto.Profile;
 import com.bsuir_finder.service.ProfileService;
-import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;

@@ -3,7 +3,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".profile-form");
     const photoInput = document.getElementById("photoInput");
     const photoPreview = document.getElementById("mainPhotoUrl");
+    const btn = document.getElementById("saveProfileBtn");
     let photoData = "";
+
+    btn.addEventListener("click", function () {
+        btn.disabled = true;
+
+        fetch("/profile/edit", {
+            method: "PUT",
+            body: new FormData(document.getElementById("form"))
+        }).finally(() => {
+            btn.disabled = false;
+        });
+
+        fetch("/profile/edit/photo", {
+                    method: "POST",
+                    body: new FormData(document.getElementById("form"))
+                }).finally(() => {
+                    btn.disabled = false;
+                });
+    });
 
     photoInput.addEventListener("change", () => {
         const file = photoInput.files[0];

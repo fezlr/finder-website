@@ -35,7 +35,11 @@ public record Profile(
         String aboutMe,
 
         @NotNull(message = "{profile.mainphotourl.message.notnull}")
-        String mainPhotoUrl
+        String mainPhotoUrl,
+
+        String telegramUsername,
+
+        String instagramUsername
 ) {
 
     public int age() {

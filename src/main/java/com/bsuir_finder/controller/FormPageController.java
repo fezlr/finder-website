@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/forms")
-public class FormsPageController {
+@RequestMapping("/form")
+public class FormPageController {
     @GetMapping
-    public String formsPage() {
-        return "forms";
+    public String formPage() {
+        return "form";
     }
 }

@@ -1,6 +1,7 @@
 package com.bsuir_finder.service;
 
 import com.bsuir_finder.dto.User;
+import com.bsuir_finder.dto.enums.FormStatus;
 import com.bsuir_finder.dto.enums.Role;
 import com.bsuir_finder.dto.enums.UserStatus;
 import com.bsuir_finder.entity.ProfileEntity;
@@ -81,7 +82,10 @@ public class CustomUserDetailsService implements UserDetailsService {
                 null,
                 null,
                 null,
-                null
+                null,
+                null,
+                null,
+                FormStatus.PENDING
         );
 
         var confirmationToken = new TokenEntity(

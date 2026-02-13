@@ -1,6 +1,7 @@
 package com.bsuir_finder.controller;
 
 import com.bsuir_finder.security.AuthService;
+import com.bsuir_finder.service.ProfileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,16 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProfilePageController {
     private static final Logger log = LoggerFactory.getLogger(ProfilePageController.class);
     private final AuthService authService;
+    private final ProfileService profileService;
 
-    public ProfilePageController(AuthService authService) {
+    public ProfilePageController(AuthService authService, ProfileService profileService) {
         this.authService = authService;
+        this.profileService = profileService;
     }
 
     @GetMapping
     public String profilePage(Model model) {
         log.info("Called profilePage()");
-        var profile = authService.getCurrentUser().getProfile();
-        model.addAttribute("profile", profile);
+        var profile = profileService.getCurrentProfile();
+        model.addAttribute("profile", profileService.getCurrentProfile());
+        model.addAttribute("isComplete", profileService.isProfileComplete(profile));
         return "profile-main";
     }
 }

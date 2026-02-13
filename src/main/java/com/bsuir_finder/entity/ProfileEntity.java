@@ -1,10 +1,10 @@
 package com.bsuir_finder.entity;
 
+import com.bsuir_finder.dto.enums.FormStatus;
 import com.bsuir_finder.dto.enums.Gender;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.Objects;
 
 @Table(name = "profiles")
@@ -19,55 +19,45 @@ public class ProfileEntity {
     @OneToOne(mappedBy = "profile")
     private UserEntity user;
 
-    @Column(
-            name = "first_name"
-    )
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(
-            name = "last_name"
-    )
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(
-            name = "birth_date"
-    )
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @Column(
-            name = "gender"
-    )
+    @Column(name = "gender")
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(
-            name = "city"
-    )
+    @Column(name = "city")
     private String city;
 
-    @Column(
-            length = 1000,
-            name = "about_me"
-    )
+    @Column(length = 1000, name = "about_me")
     private String aboutMe;
 
-    @Column(
-            name = "main_photo_url"
-    )
+    @Column(name = "main_photo_url")
     private String mainPhotoUrl;
+
+    @Column(name = "telegram_username")
+    private String telegramUsername;
+
+    @Column(name = "instagram_username")
+    private String instagramUsername;
+
+    @Column(name = "form_status")
+    @Enumerated(EnumType.STRING)
+    private FormStatus formStatus;
+
+    @Column(name = "is_visible")
+    private boolean isVisible = false;
 
     public ProfileEntity() {
     }
 
-    public ProfileEntity(Long id,
-                         UserEntity user,
-                         String firstName,
-                         String lastName,
-                         LocalDate birthDate,
-                         Gender gender,
-                         String city,
-                         String aboutMe,
-                         String mainPhotoUrl) {
+    public ProfileEntity(Long id, UserEntity user, String firstName, String lastName, LocalDate birthDate, Gender gender, String city, String aboutMe, String mainPhotoUrl, String telegramUsername, String instagramUsername, FormStatus formStatus, boolean isVisible) {
         this.id = id;
         this.user = user;
         this.firstName = firstName;
@@ -77,6 +67,10 @@ public class ProfileEntity {
         this.city = city;
         this.aboutMe = aboutMe;
         this.mainPhotoUrl = mainPhotoUrl;
+        this.telegramUsername = telegramUsername;
+        this.instagramUsername = instagramUsername;
+        this.formStatus = formStatus;
+        this.isVisible = isVisible;
     }
 
     public Long getId() {
@@ -151,19 +145,47 @@ public class ProfileEntity {
         this.mainPhotoUrl = mainPhotoUrl;
     }
 
-    public int getAge() {
-        return Period.between(birthDate, LocalDate.now()).getYears();
+    public String getTelegramUsername() {
+        return telegramUsername;
+    }
+
+    public void setTelegramUsername(String telegramUsername) {
+        this.telegramUsername = telegramUsername;
+    }
+
+    public String getInstagramUsername() {
+        return instagramUsername;
+    }
+
+    public void setInstagramUsername(String instagramUsername) {
+        this.instagramUsername = instagramUsername;
+    }
+
+    public FormStatus getFormStatus() {
+        return formStatus;
+    }
+
+    public void setFormStatus(FormStatus formStatus) {
+        this.formStatus = formStatus;
+    }
+
+    public boolean isVisible() {
+        return isVisible;
+    }
+
+    public void setVisible(boolean visible) {
+        isVisible = visible;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         ProfileEntity that = (ProfileEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(user, that.user) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(birthDate, that.birthDate) && Objects.equals(gender, that.gender) && Objects.equals(city, that.city) && Objects.equals(aboutMe, that.aboutMe) && Objects.equals(mainPhotoUrl, that.mainPhotoUrl);
+        return isVisible == that.isVisible && Objects.equals(id, that.id) && Objects.equals(user, that.user) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(birthDate, that.birthDate) && gender == that.gender && Objects.equals(city, that.city) && Objects.equals(aboutMe, that.aboutMe) && Objects.equals(mainPhotoUrl, that.mainPhotoUrl) && Objects.equals(telegramUsername, that.telegramUsername) && Objects.equals(instagramUsername, that.instagramUsername) && formStatus == that.formStatus;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, firstName, lastName, birthDate, gender, city, aboutMe, mainPhotoUrl);
+        return Objects.hash(id, user, firstName, lastName, birthDate, gender, city, aboutMe, mainPhotoUrl, telegramUsername, instagramUsername, formStatus, isVisible);
     }
 }
