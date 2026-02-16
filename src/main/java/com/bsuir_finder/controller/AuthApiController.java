@@ -23,6 +23,8 @@ public class AuthApiController {
     public ResponseEntity<User> registerUser(
             @RequestBody User user
     ) {
+        log.info("Called registerUser()");
+        log.info("BODY = {}", user);
          return ResponseEntity
                  .ok(customUserDetailsService.registerUser(user));
     }
@@ -31,6 +33,7 @@ public class AuthApiController {
     public ResponseEntity<Token> confirmToken(
             @RequestParam String token
     ) {
+        log.info("Called confirmToken()");
         customUserDetailsService.confirmToken(token);
         return ResponseEntity.ok().build();
     }

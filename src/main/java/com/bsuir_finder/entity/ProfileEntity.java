@@ -51,13 +51,13 @@ public class ProfileEntity {
     @Enumerated(EnumType.STRING)
     private FormStatus formStatus;
 
-    @Column(name = "is_visible")
-    private boolean isVisible = false;
+    @Column(name = "is_full")
+    private Boolean isFull = false;
 
     public ProfileEntity() {
     }
 
-    public ProfileEntity(Long id, UserEntity user, String firstName, String lastName, LocalDate birthDate, Gender gender, String city, String aboutMe, String mainPhotoUrl, String telegramUsername, String instagramUsername, FormStatus formStatus, boolean isVisible) {
+    public ProfileEntity(Long id, UserEntity user, String firstName, String lastName, LocalDate birthDate, Gender gender, String city, String aboutMe, String mainPhotoUrl, String telegramUsername, String instagramUsername, FormStatus formStatus, Boolean isFull) {
         this.id = id;
         this.user = user;
         this.firstName = firstName;
@@ -70,7 +70,7 @@ public class ProfileEntity {
         this.telegramUsername = telegramUsername;
         this.instagramUsername = instagramUsername;
         this.formStatus = formStatus;
-        this.isVisible = isVisible;
+        this.isFull = isFull;
     }
 
     public Long getId() {
@@ -169,23 +169,23 @@ public class ProfileEntity {
         this.formStatus = formStatus;
     }
 
-    public boolean isVisible() {
-        return isVisible;
+    public Boolean isFull() {
+        return isFull;
     }
 
-    public void setVisible(boolean visible) {
-        isVisible = visible;
+    public void setFull(Boolean isFull) {
+        this.isFull = isFull;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         ProfileEntity that = (ProfileEntity) o;
-        return isVisible == that.isVisible && Objects.equals(id, that.id) && Objects.equals(user, that.user) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(birthDate, that.birthDate) && gender == that.gender && Objects.equals(city, that.city) && Objects.equals(aboutMe, that.aboutMe) && Objects.equals(mainPhotoUrl, that.mainPhotoUrl) && Objects.equals(telegramUsername, that.telegramUsername) && Objects.equals(instagramUsername, that.instagramUsername) && formStatus == that.formStatus;
+        return isFull == that.isFull && Objects.equals(id, that.id) && Objects.equals(user, that.user) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(birthDate, that.birthDate) && gender == that.gender && Objects.equals(city, that.city) && Objects.equals(aboutMe, that.aboutMe) && Objects.equals(mainPhotoUrl, that.mainPhotoUrl) && Objects.equals(telegramUsername, that.telegramUsername) && Objects.equals(instagramUsername, that.instagramUsername) && formStatus == that.formStatus;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, firstName, lastName, birthDate, gender, city, aboutMe, mainPhotoUrl, telegramUsername, instagramUsername, formStatus, isVisible);
+        return Objects.hash(id, user, firstName, lastName, birthDate, gender, city, aboutMe, mainPhotoUrl, telegramUsername, instagramUsername, formStatus, isFull);
     }
 }

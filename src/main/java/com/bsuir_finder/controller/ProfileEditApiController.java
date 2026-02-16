@@ -3,6 +3,7 @@ package com.bsuir_finder.controller;
 import com.bsuir_finder.service.PhotoStorageService;
 import com.bsuir_finder.dto.Profile;
 import com.bsuir_finder.service.ProfileService;
+import org.apache.coyote.BadRequestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class ProfileEditApiController {
 
     @PutMapping
     public ResponseEntity<Profile> updateProfile(
-            @RequestBody Profile profile
+            @Validated @RequestBody Profile profile
     ) {
         log.info("Called updateProfile with body = {}", profile);
         return ResponseEntity

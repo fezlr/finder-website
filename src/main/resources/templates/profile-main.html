@@ -13,8 +13,11 @@
 
     <div class="card">
         <div class="photo-area">
-            <img id="mainPhoto" th:src="${profile.mainPhotoUrl != null}? ${profile.mainPhotoUrl} : @{avatar.jpg}" alt="Profile photo" />
-            <div class="photo-badge" id="photoBadge" th:text="${profile.firstName ?: ''} + ', ' + ${profile.age ?: ''}"></div>
+
+            <img id="mainPhotoUrl"
+                 th:src="${profile.mainPhotoUrl != null} ? ${profile.mainPhotoUrl} : @{profile/avatar.jpg}"
+                 alt="Profile photo">
+            <div class="photo-badge" id="photoBadge" th:text="${profile.firstName ?: ''} + ' ' + ${profile.age ?: ''}"></div>
         </div>
         <div style="margin-top:14px">
             <h3 style="margin:0 0 8px 0">About</h3>
@@ -24,7 +27,10 @@
 
 <div class="panel">
     <div class="header">
-        <h1 th:text="${profile.firstName ?: ''} + ' ' + ${profile.lastName ?: ''}"></h1>
+        <h1 th:if="${profile.firstName != null or profile.lastName != null}">
+            <span th:text="${profile.firstName ?: ' '} + ' ' + ${profile.lastName ?: ' '}"></span>
+        </h1>
+
         <div class="actions">
             <a href="/profile/edit" class="btn" id="editBtn">Edit profile</a>
         </div>

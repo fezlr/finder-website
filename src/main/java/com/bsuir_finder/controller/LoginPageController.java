@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/login")
 public class LoginPageController {
-
     private static final Logger log = LoggerFactory.getLogger(LoginPageController.class);
 
     @GetMapping

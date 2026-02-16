@@ -52,7 +52,9 @@ body {
 /* FORM */
 .profile-form input,
 .profile-form select,
-.profile-form textarea {
+.profile-form textarea,
+.profile-form checkbox,
+.profile-form label {
     width: 100%;
     padding: 12px;
     margin-bottom: 14px;
@@ -86,4 +88,25 @@ body {
     font-size: 13px;
     margin-top: 4px;
     display: none;
+}
+
+.checkbox-group {
+    display: flex;       /* Ставит элементы в ряд */
+    align-items: center; /* Центрирует по вертикали */
+    gap: 10px;           /* Расстояние между галочкой и текстом */
+    margin-bottom: 14px;
+}
+
+.checkbox-group input {
+    width: auto;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    width: auto;
+    margin-bottom: 0;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 }

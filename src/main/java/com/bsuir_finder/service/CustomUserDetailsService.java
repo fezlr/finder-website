@@ -85,7 +85,8 @@ public class CustomUserDetailsService implements UserDetailsService {
                 null,
                 null,
                 null,
-                FormStatus.PENDING
+                FormStatus.HIDDEN,
+                false
         );
 
         var confirmationToken = new TokenEntity(

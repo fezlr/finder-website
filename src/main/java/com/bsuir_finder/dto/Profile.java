@@ -39,10 +39,16 @@ public record Profile(
 
         String telegramUsername,
 
-        String instagramUsername
+        String instagramUsername,
+
+        Boolean formActivation
 ) {
 
-    public int age() {
+    public Integer age() {
+        if(birthDate == null) {
+            return null;
+        }
         return Period.between(birthDate, LocalDate.now()).getYears();
+
     }
 }

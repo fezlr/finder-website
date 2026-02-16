@@ -30,7 +30,13 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(
                         req -> req
-                                .requestMatchers("/register/**", "/css/**", "/js/**", "/login/**").permitAll()
+                                .requestMatchers(
+                                        "/register/**",
+                                        "/css/**",
+                                        "/js/**",
+                                        "/login/**",
+                                        "/api/auth/register"
+                                ).permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(req -> req

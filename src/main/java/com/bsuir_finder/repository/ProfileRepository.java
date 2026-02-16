@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ProfileRepository extends JpaRepository<ProfileEntity, Long> {
 
-    List<ProfileEntity> findAllByIsVisibleTrueAndIdNot(Long id);
+    List<ProfileEntity> findAllByIsFullTrueAndIdNot(Long id);
 }

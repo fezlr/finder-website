@@ -6,12 +6,16 @@ import com.bsuir_finder.entity.ProfileEntity;
 import com.bsuir_finder.mapper.ProfileMapper;
 import com.bsuir_finder.repository.ProfileRepository;
 import com.bsuir_finder.security.AuthService;
+import com.cloudinary.api.exceptions.BadRequest;
+import javassist.tools.web.BadHttpRequest;
+import org.apache.coyote.BadRequestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ProfileService {
@@ -32,28 +36,75 @@ public class ProfileService {
 
         log.info("Called updateProfile()");
 
-        var user = authService.getCurrentUser();
-        var profileToSave = user.getProfile();
+        boolean changed = false;
 
-        profileToSave.setFirstName(profileToUpdate.firstName());
-        profileToSave.setLastName(profileToUpdate.lastName());
-        profileToSave.setBirthDate(profileToUpdate.birthDate());
-        profileToSave.setGender(profileToUpdate.gender());
-        profileToSave.setCity(profileToUpdate.city());
-        profileToSave.setAboutMe(profileToUpdate.aboutMe());
-        profileToSave.setTelegramUsername(profileToSave.getTelegramUsername());
-        profileToSave.setInstagramUsername(profileToSave.getInstagramUsername());
+        var profileToSave = authService.getCurrentUser().getProfile();
+
+        if(!Objects.equals(profileToUpdate.firstName(), profileToSave.getFirstName())) {
+            profileToSave.setFirstName(profileToUpdate.firstName());
+            changed = true;
+        }
+
+        if(!Objects.equals(profileToUpdate.lastName(), profileToSave.getLastName())) {
+            profileToSave.setLastName(profileToUpdate.lastName());
+            changed = true;
+        }
+
+        if(!Objects.equals(profileToUpdate.birthDate(), profileToSave.getBirthDate())) {
+            profileToSave.setBirthDate(profileToUpdate.birthDate());
+            changed = true;
+        }
+
+        if(!Objects.equals(profileToUpdate.gender(), profileToSave.getGender())) {
+            profileToSave.setGender(profileToUpdate.gender());
+            changed = true;
+        }
+
+        if(!Objects.equals(profileToUpdate.city(), profileToSave.getCity())) {
+            profileToSave.setCity(profileToUpdate.city());
+            changed = true;
+        }
+
+        if(!Objects.equals(profileToUpdate.aboutMe(), profileToSave.getAboutMe())) {
+            profileToSave.setAboutMe(profileToUpdate.aboutMe());
+            changed = true;
+        }
+
+        if(!Objects.equals(profileToUpdate.telegramUsername(), profileToSave.getTelegramUsername())) {
+            profileToSave.setTelegramUsername(profileToUpdate.telegramUsername());
+            changed = true;
+        }
+
+        if(!Objects.equals(profileToUpdate.instagramUsername(), profileToSave.getInstagramUsername())) {
+            profileToSave.setInstagramUsername(profileToUpdate.instagramUsername());
+            changed = true;
+        }
+
+
 
         if (isProfileEntityComplete(profileToSave)) {
-            profileToSave.setVisible(true);
-            profileToSave.setFormStatus(FormStatus.ACTIVE);
+            profileToSave.setFull(true);
         }
         else {
-            profileToSave.setVisible(false);
-            profileToSave.setFormStatus(FormStatus.INCOMPLETE);
+            profileToSave.setFull(false);
         }
 
-        return profileMapper.toDto(profileRepository.save(profileToSave));
+        if(Boolean.TRUE.equals(profileToUpdate.formActivation())) {
+            if(isProfileEntityComplete(profileToSave)) {
+                profileToSave.setFormStatus(FormStatus.ACTIVE);
+                changed = true;
+            }
+            else {
+                throw new IllegalArgumentException("Profile is not full");
+            }
+        }
+
+        if(changed) {
+            return profileMapper.toDto(profileRepository.save(profileToSave));
+        }
+
+        return profileMapper.toDto(profileToSave);
+
     }
 
     @Transactional
@@ -72,7 +123,7 @@ public class ProfileService {
     public List<Profile> getVisibleForms() {
         var currentProfile = authService.getCurrentUser().getProfile();
         return profileRepository
-                .findAllByIsVisibleTrueAndIdNot(currentProfile.getId())
+                .findAllByIsFullTrueAndIdNot(currentProfile.getId())
                 .stream()
                 .map(profileMapper::toDto)
                 .toList();
@@ -85,7 +136,7 @@ public class ProfileService {
                 profile.gender() != null &&
                 profile.city() != null && !profile.city().isBlank() &&
                 profile.aboutMe() != null && !profile.aboutMe().isBlank() &&
-                profile.telegramUsername() != null && !profile.telegramUsername().isBlank();
+                ((profile.telegramUsername() != null && !profile.telegramUsername().isBlank()) || (profile.instagramUsername() != null && !profile.instagramUsername().isBlank()));
     }
 
     private boolean isProfileEntityComplete(ProfileEntity profile) {
@@ -95,6 +146,6 @@ public class ProfileService {
                 profile.getGender() != null &&
                 profile.getCity() != null && !profile.getCity().isBlank() &&
                 profile.getAboutMe() != null && !profile.getAboutMe().isBlank() &&
-                profile.getTelegramUsername() != null && !profile.getTelegramUsername().isBlank();
+                ((profile.getTelegramUsername() != null && !profile.getTelegramUsername().isBlank()) || (profile.getInstagramUsername() != null && !profile.getInstagramUsername().isBlank()));
     }
 }

@@ -8,8 +8,6 @@
     <meta name="_csrf_header" th:content="${_csrf.headerName}">
 </head>
 
-
-
 <body>
 <div class="profile-container">
     <div class="profile-card">
@@ -25,7 +23,7 @@
                    hidden>
         </div>
 
-        <form class="profile-form">
+        <form id="profile-form" class="profile-form">
 
             <input id="firstName" th:value="${profile.firstName ?: ''}" placeholder="First name" required>
             <div class="error" id="error-firstName"></div>
@@ -45,19 +43,28 @@
             <div class="error" id="error-gender"></div>
 
 
-            <input id="city" th:value="${profile.city ?: ''}"placeholder="City" required>
+            <input id="city" th:value="${profile.city ?: ''}" placeholder="City" required>
             <div class="error" id="error-city"></div>
 
             <textarea id="aboutMe" th:text="${profile.aboutMe ?: ''}" placeholder="About me" required></textarea>
             <div class="error" id="error-aboutMe"></div>
 
+            <textarea id="telegramUsername" th:text="${profile.telegramUsername ?: ''}" placeholder="Telegram"></textarea>
+
+            <textarea id="instagramUsername" th:text="${profile.instagramUsername ?: ''}" placeholder="Instagram"></textarea>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="formStatusCheck" name="formStatusCheck" th:checked="${profile.formStatus == T(com.bsuir_finder.dto.enums.FormStatus).ACTIVE}">
+                <label for="formStatusCheck">Activate a form</label>
+            </div>
+
 <!--            <input type="hidden" id="csrfToken" th:value="${_csrf.token}">-->
 
             <button type="submit" id="saveProfileBtn">Save profile</button>
         </form>
-
     </div>
 </div>
+
 </body>
 <script th:src="@{/js/profile/profile-edit.js}"></script>
 </html>
