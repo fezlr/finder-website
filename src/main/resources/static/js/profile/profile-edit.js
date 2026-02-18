@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Select a photo")
             btn.disabled = false;
             return;
-        }
+        }4
 
         try {
             if (photoInput.files.length > 0) {
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 mainPhotoUrl: photoData?.url || photoPreview.src,
                 telegramUsername: document.getElementById("telegramUsername")?.value || "",
                 instagramUsername: document.getElementById("instagramUsername")?.value || "",
-                formStatusCheck: document.getElementById("formStatus").checked
+                formActivation: document.getElementById("formStatusCheck").checked
             };
 
             const response = await fetch("/api/edit", {
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (error) {
             console.error("Error:", error);
-            alert("Unable to save a profile: " + error.message);
+            alert("Unable to save a profile: " + error.message); //TODO: delete error.message before the end
         } finally {
             btn.disabled = false;
         }

@@ -29,6 +29,8 @@
     <div class="header">
         <h1 th:if="${profile.firstName != null or profile.lastName != null}">
             <span th:text="${profile.firstName ?: ' '} + ' ' + ${profile.lastName ?: ' '}"></span>
+            <input type="checkbox" th:checked="${profile.formActivation}" disabled />
+
         </h1>
 
         <div class="actions">

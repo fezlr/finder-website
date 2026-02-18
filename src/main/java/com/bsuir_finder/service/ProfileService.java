@@ -81,7 +81,6 @@ public class ProfileService {
         }
 
 
-
         if (isProfileEntityComplete(profileToSave)) {
             profileToSave.setFull(true);
         }
@@ -89,6 +88,7 @@ public class ProfileService {
             profileToSave.setFull(false);
         }
 
+        //TODO: direct to another method
         if(Boolean.TRUE.equals(profileToUpdate.formActivation())) {
             if(isProfileEntityComplete(profileToSave)) {
                 profileToSave.setFormStatus(FormStatus.ACTIVE);
@@ -97,6 +97,10 @@ public class ProfileService {
             else {
                 throw new IllegalArgumentException("Profile is not full");
             }
+        }
+        else if(Boolean.FALSE.equals(profileToUpdate.formActivation())) {
+            profileToSave.setFormStatus(FormStatus.HIDDEN);
+            changed = true;
         }
 
         if(changed) {

@@ -1,9 +1,9 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-/target
+target/
 HELP.md
 mvnw
 mvnw.cmd
 application.properties
-/idea
+idea/

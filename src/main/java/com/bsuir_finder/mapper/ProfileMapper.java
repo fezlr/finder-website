@@ -1,6 +1,7 @@
 package com.bsuir_finder.mapper;
 
 import com.bsuir_finder.dto.Profile;
+import com.bsuir_finder.dto.enums.FormStatus;
 import com.bsuir_finder.entity.ProfileEntity;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +17,15 @@ public class ProfileMapper {
                 profileEntity.getAboutMe(),
                 profileEntity.getMainPhotoUrl(),
                 profileEntity.getTelegramUsername(),
-                profileEntity.getInstagramUsername()
+                profileEntity.getInstagramUsername(),
+                formState(profileEntity)
         );
+    }
+
+    private Boolean formState(ProfileEntity profileEntity) {
+        if(profileEntity.getFormStatus() == FormStatus.ACTIVE) {
+            return true;
+        }
+        return false;
     }
 }
