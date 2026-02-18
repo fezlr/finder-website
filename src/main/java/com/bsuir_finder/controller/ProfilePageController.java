@@ -25,7 +25,7 @@ public class ProfilePageController {
     public String profilePage(Model model) {
         log.info("Called profilePage()");
         var profile = profileService.getCurrentProfile();
-        model.addAttribute("profile", profileService.getCurrentProfile());
+        model.addAttribute("profile", profile);
         model.addAttribute("isComplete", profileService.isProfileComplete(profile));
         return "profile-main";
     }

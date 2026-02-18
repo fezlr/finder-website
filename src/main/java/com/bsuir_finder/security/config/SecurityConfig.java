@@ -22,6 +22,7 @@ public class SecurityConfig {
         this.userDetailsService = userDetailsService;
     }
 
+    //TODO: Add JWT + OAuth
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
