@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.UUID;
 
 @Service
@@ -61,6 +62,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         String password = passwordEncoder.encode(userToCreate.password());
 
+        // TODO: Builder
         var entityToSave = new UserEntity(
                 null,
                 userToCreate.email(),
@@ -70,7 +72,8 @@ public class CustomUserDetailsService implements UserDetailsService {
                 LocalDate.now(),
                 false,
                 UserStatus.PENDING,
-                null
+                null,
+                new ArrayList<>()
         );
 
         var profileToSave = new ProfileEntity(

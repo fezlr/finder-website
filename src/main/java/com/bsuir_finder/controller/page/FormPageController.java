@@ -1,28 +1,29 @@
-package com.bsuir_finder.controller;
+package com.bsuir_finder.controller.page;
 
-import com.bsuir_finder.dto.Profile;
+import com.bsuir_finder.security.AuthService;
 import com.bsuir_finder.service.FormService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @RequestMapping("/form")
 public class FormPageController {
 
     private final FormService formService;
+    private final AuthService authService;
 
-    public FormPageController(FormService formService) {
+    public FormPageController(FormService formService, AuthService authService) {
         this.formService = formService;
+        this.authService = authService;
     }
 
     @GetMapping
     public String formPage(Model model) {
-        model.addAttribute("profiles", formService.allForms());
+        var profileId = authService.getCurrentUser().getProfile().getId();
+        var form = formService.findNextFormById(profileId);
+        model.addAttribute("form", form);
         return "form";
     }
 }

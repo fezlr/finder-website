@@ -1,9 +1,8 @@
-package com.bsuir_finder.controller;
+package com.bsuir_finder.controller.api;
 
 import com.bsuir_finder.service.PhotoStorageService;
 import com.bsuir_finder.dto.Profile;
 import com.bsuir_finder.service.ProfileService;
-import org.apache.coyote.BadRequestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;

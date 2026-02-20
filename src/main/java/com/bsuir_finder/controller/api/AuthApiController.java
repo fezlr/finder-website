@@ -1,4 +1,4 @@
-package com.bsuir_finder.controller;
+package com.bsuir_finder.controller.api;
 
 import com.bsuir_finder.dto.Token;
 import com.bsuir_finder.dto.User;

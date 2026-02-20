@@ -1,16 +1,14 @@
-package com.bsuir_finder.controller;
+package com.bsuir_finder.controller.api;
 
 import com.bsuir_finder.dto.Profile;
+import com.bsuir_finder.dto.ProfileView;
 import com.bsuir_finder.service.FormService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.net.http.HttpResponse;
 import java.util.List;
 
 @RestController
@@ -25,9 +23,19 @@ public class FormApiController {
     }
 
     @GetMapping("/forms")
-    public ResponseEntity<List<Profile>> findAllForms() {
+    public ResponseEntity<List<Profile>> findForms() {
         log.info("Called findAllForms()");
         return ResponseEntity.status(HttpStatus.OK)
                 .body(formService.allForms());
+    }
+
+    @PostMapping("/react")
+    public ResponseEntity<ProfileView> reactionForm(
+            @RequestBody ProfileView profileView
+    ) {
+        log.info("Called reactionForm()");
+        log.info("BODY = {}", profileView);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(formService.reactionForm(profileView));
     }
 }

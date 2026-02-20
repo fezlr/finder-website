@@ -1,4 +1,4 @@
-package com.bsuir_finder.controller;
+package com.bsuir_finder.controller.page;
 
 import com.bsuir_finder.security.AuthService;
 import com.bsuir_finder.service.ProfileService;

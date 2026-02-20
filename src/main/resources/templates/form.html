@@ -9,14 +9,13 @@
 <body>
 <div class="form-container">
     <div class="form-card">
-
-        <p th:text="${profiles}"></p>
-
-
         <ul>
-            <li th:each="profile : ${profiles}">
-                <span th:text="${profile.firstName}"></span>
-            </li>
+                <span th:text="${form.firstName}"></span>
+                <span th:text="${form.lastName}"></span>
+                <span th:text="${form.age}"></span>
+                <span th:text="${form.gender}"></span>
+                <span th:text="${form.aboutMe}"></span>
+                <span th:text="${form.mainPhotoUrl}"></span>
         </ul>
 
     </div>

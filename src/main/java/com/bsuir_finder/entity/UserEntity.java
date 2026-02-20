@@ -4,6 +4,8 @@ import com.bsuir_finder.dto.enums.Role;
 import com.bsuir_finder.dto.enums.UserStatus;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Table(name = "users")
@@ -59,29 +61,23 @@ public class UserEntity {
     @JoinColumn(name = "profile_id")
     private ProfileEntity profile;
 
+    @OneToMany(mappedBy = "viewer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProfileViewEntity> views = new ArrayList<>();
+
     public UserEntity() {
     }
 
-    public UserEntity(
-            Long id,
-            String email,
-            String username,
-            String password,
-            Role role,
-            LocalDate createdAt,
-            boolean enabled,
-            UserStatus userStatus,
-            ProfileEntity profile
-    ) {
-        this.profile = profile;
-        this.userStatus = userStatus;
+    public UserEntity(Long id, String email, String username, String password, Role role, LocalDate createdAt, boolean enabled, UserStatus userStatus, ProfileEntity profile, List<ProfileViewEntity> views) {
+        this.id = id;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.role = role;
         this.createdAt = createdAt;
         this.enabled = enabled;
-        this.role = role;
-        this.password = password;
-        this.username = username;
-        this.email = email;
-        this.id = id;
+        this.userStatus = userStatus;
+        this.profile = profile;
+        this.views = views;
     }
 
     public Long getId() {
@@ -156,15 +152,23 @@ public class UserEntity {
         this.profile = profile;
     }
 
+    public List<ProfileViewEntity> getViews() {
+        return views;
+    }
+
+    public void setViews(List<ProfileViewEntity> views) {
+        this.views = views;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
-        return enabled == that.enabled && Objects.equals(id, that.id) && Objects.equals(email, that.email) && Objects.equals(username, that.username) && Objects.equals(password, that.password) && role == that.role && Objects.equals(createdAt, that.createdAt) && userStatus == that.userStatus && Objects.equals(profile, that.profile);
+        return enabled == that.enabled && Objects.equals(id, that.id) && Objects.equals(email, that.email) && Objects.equals(username, that.username) && Objects.equals(password, that.password) && role == that.role && Objects.equals(createdAt, that.createdAt) && userStatus == that.userStatus && Objects.equals(profile, that.profile) && Objects.equals(views, that.views);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, username, password, role, enabled, createdAt, userStatus, profile);
+        return Objects.hash(id, email, username, password, role, enabled, createdAt, userStatus, profile, views);
     }
 }

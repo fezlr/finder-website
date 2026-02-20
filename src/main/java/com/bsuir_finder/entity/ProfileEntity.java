@@ -5,6 +5,7 @@ import com.bsuir_finder.dto.enums.Gender;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Table(name = "profiles")
