@@ -6,18 +6,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProfileViewMapper {
-
-    private final ProfileMapper profileMapper;
-
-    public ProfileViewMapper(ProfileMapper profileMapper) {
-        this.profileMapper = profileMapper;
-    }
-
     public ProfileView toDto(ProfileViewEntity profileViewEntity) {
         return new ProfileView(
                 profileViewEntity.getId(),
-                profileViewEntity.getViewer(),
-                profileViewEntity.getViewedProfile(),
+                profileViewEntity.getViewerId(),
+                profileViewEntity.getViewedProfileId(),
                 profileViewEntity.getReaction()
         );
     }

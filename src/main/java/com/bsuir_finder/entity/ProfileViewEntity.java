@@ -3,34 +3,29 @@ package com.bsuir_finder.entity;
 import com.bsuir_finder.dto.enums.Reaction;
 import jakarta.persistence.*;
 
-@Entity
 @Table(name = "profile_views")
+@Entity
 public class ProfileViewEntity {
-
-    //html ->
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "viewer")
-    private UserEntity viewer;
+    @Column(name = "viewer_id", nullable = false)
+    private Long viewerId;
 
-    @ManyToOne
-    @JoinColumn(name = "viewed_profile")
-    private ProfileEntity viewedProfile;
+    @Column(name = "viewed_profile_id", nullable = false)
+    private Long viewedProfileId;
 
-    @ManyToOne
-    @JoinColumn(name = "reaction")
+    @Column(name = "reaction", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Reaction reaction;
 
-
-    public ProfileViewEntity(Long id, UserEntity viewer, ProfileEntity viewedProfile, Reaction reaction) {
+    public ProfileViewEntity(Long id, Long viewerId, Long viewedProfileId, Reaction reaction) {
         this.id = id;
-        this.viewer = viewer;
-        this.viewedProfile = viewedProfile;
+        this.viewerId = viewerId;
+        this.viewedProfileId = viewedProfileId;
         this.reaction = reaction;
     }
 
@@ -42,20 +37,20 @@ public class ProfileViewEntity {
         this.id = id;
     }
 
-    public UserEntity getViewer() {
-        return viewer;
+    public Long getViewerId() {
+        return viewerId;
     }
 
-    public void setViewer(UserEntity viewer) {
-        this.viewer = viewer;
+    public void setViewerId(Long viewerId) {
+        this.viewerId = viewerId;
     }
 
-    public ProfileEntity getViewedProfile() {
-        return viewedProfile;
+    public Long getViewedProfileId() {
+        return viewedProfileId;
     }
 
-    public void setViewedProfile(ProfileEntity viewedProfile) {
-        this.viewedProfile = viewedProfile;
+    public void setViewedProfileId(Long viewedProfileId) {
+        this.viewedProfileId = viewedProfileId;
     }
 
     public Reaction getReaction() {

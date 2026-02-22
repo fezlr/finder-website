@@ -5,9 +5,9 @@ import com.bsuir_finder.dto.enums.Reaction;
 public record ProfileView(
         Long id,
 
-        User viewer,
+        Long viewerId,
 
-        Profile viewedProfile,
+        Long viewedProfileId,
 
         Reaction reaction
 ) {

@@ -21,10 +21,10 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, Long> {
             nativeQuery = true)
     ProfileEntity findRandomProfileWithIdNot(@Param("id") Long id);
 
-    @Query(value = "SELECT * FROM profiles WHERE id != :id AND gender != 'MALE' ORDER BY RANDOM() LIMIT 1",
-            nativeQuery = true)
-    ProfileEntity findRandomProfileWithGenderMaleAndIdNot(@Param("id") Long id);
-
-    @Query(value = "SELECT * FROM profiles WHERE id != :id AND gender = 'FEMALE' ORDER BY RANDOM() LIMIT 1")
-    ProfileEntity findProfileWithGenderFemaleAndIdNot(@Param("id") Long id);
+//    @Query(value = "SELECT * FROM profiles WHERE id != :id AND gender != 'MALE' ORDER BY RANDOM() LIMIT 1",
+//            nativeQuery = true)
+//    ProfileEntity findRandomProfileWithGenderMaleAndIdNot(@Param("id") Long id);
+//
+//    @Query(value = "SELECT * FROM profiles WHERE id != :id AND gender = 'FEMALE' ORDER BY RANDOM() LIMIT 1")
+//    ProfileEntity findProfileWithGenderFemaleAndIdNot(@Param("id") Long id);
 }

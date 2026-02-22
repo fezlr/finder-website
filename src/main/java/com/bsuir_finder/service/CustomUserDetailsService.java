@@ -72,8 +72,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 LocalDate.now(),
                 false,
                 UserStatus.PENDING,
-                null,
-                new ArrayList<>()
+                null
         );
 
         var profileToSave = new ProfileEntity(
