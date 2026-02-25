@@ -1,7 +1,12 @@
-`document.getElementById("like_btn").addEventListener("click", () => sendReaction("LIKE"));
+document.getElementById("like_btn").addEventListener("click", () => sendReaction("LIKE"));
 document.getElementById("dislike_btn").addEventListener("click", () => sendReaction("DISLIKE"));
 
 async function sendReaction(reaction) {
+    const profileContainer = document.getElementById("form-container");
+    const viewedProfileId = profileContainer.dataset.profileId;
+
+    alert("Reaction sent:", reaction, "for profile", viewedProfileId);
+
     const response = await fetch("api/form/react", {
         method: "POST",
         headers: {
@@ -9,12 +14,14 @@ async function sendReaction(reaction) {
             "X-CSRF-TOKEN": document.getElementById("csrfToken").value
         },
         body: JSON.stringify({
-            reaction: reaction
-        })
+            reaction: reaction,
+            viewedProfileId: viewedProfileId
+            })
     });
 
     if (!response.ok) {
     const error = await response.text();
             alert(error);
     }
-}`
+    window.location.reload();
+}

@@ -25,8 +25,14 @@ public class FormPageController {
     public String formPage(Model model) {
         log.info("Called formPage");
 
-        var profileId = authService.getCurrentUser().getProfile().getId();
-        var form = formService.findRandomUnreactedFormById(profileId);
+        var form = formService
+                .findRandomUnreactedFormById(
+                        authService
+                                .getCurrentUser()
+                                .getProfile()
+                                .getId());
+
+
         log.info("BODY = {}", form);
         model.addAttribute("form", form);
         return "form";

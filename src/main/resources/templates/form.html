@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<div class="form-container">
+<div class="form-container" id="form-container" th:data-profile-id="${form.id}">
     <div class="form-card">
         <ul>
                 <span th:text="${form.firstName}"></span>
@@ -23,5 +23,9 @@
     <button id="dislike_btn">Dislike</button>
 
 </div>
+
+<input type="hidden" id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
 </body>
+<script th:src="@{/js/form/form.js}"></script>
 </html>

@@ -24,4 +24,6 @@ public interface ProfileViewRepository extends JpaRepository<ProfileViewEntity, 
     List<ProfileEntity> findRandomUnreactedWithId(
             @Param("currentId") Long currentId,
             Pageable pageable);
+
+    boolean existsByViewerIdAndViewedProfileId(Long viewerId, Long viewedProfileId);
 }

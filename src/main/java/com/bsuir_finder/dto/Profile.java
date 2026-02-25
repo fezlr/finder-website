@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public record Profile(
+        Long id,
+
         @NotBlank(message = "{profile.firstname.message.notblank}")
         @Pattern(regexp = "^(?:[А-ЯЁ][а-яё]{1,30}|[A-Z][a-z]{1,30})$",
                  message = "{profile.firstname.pattern}")

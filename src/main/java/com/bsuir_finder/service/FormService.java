@@ -2,8 +2,10 @@ package com.bsuir_finder.service;
 
 import com.bsuir_finder.dto.Profile;
 import com.bsuir_finder.dto.ProfileView;
+import com.bsuir_finder.dto.User;
 import com.bsuir_finder.dto.enums.FormStatus;
 
+import com.bsuir_finder.dto.enums.Reaction;
 import com.bsuir_finder.entity.ProfileViewEntity;
 import com.bsuir_finder.mapper.ProfileMapper;
 import com.bsuir_finder.mapper.ProfileViewMapper;
@@ -12,7 +14,9 @@ import com.bsuir_finder.repository.ProfileRepository;
 import com.bsuir_finder.repository.ProfileViewRepository;
 import com.bsuir_finder.security.AuthService;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -47,33 +51,40 @@ public class FormService {
 
     public Profile findRandomUnreactedFormById(Long id) {
         var pageable = PageRequest.of(0, 1);
-        var randomProfiles = profileViewRepository.findRandomUnreactedWithId(id, pageable);
+        var randomProfile = profileViewRepository.findRandomUnreactedWithId(id, pageable);
 
-        if(randomProfiles.isEmpty()) {
+        if(randomProfile.isEmpty()) {
             return null;
         }
 
-        return profileMapper.toDto(randomProfiles.getFirst());
+        return profileMapper.toDto(randomProfile.getFirst());
     }
 
-    public ProfileView reactionForm(ProfileView profileView) {
+    @Transactional
+    public ProfileView saveForm(Long viewedId, Reaction reaction) {
 
-        // btn1 btn2
-        // if btn1 -> save as like
-        // if btn2 -> save as dislike
+        var entityViewedProfile = profileRepository
+                .findById(viewedId)
+                .orElseThrow(() -> new IllegalStateException("Profile not found"));
 
-        var profile = authService.getCurrentUser().getProfile();
-
-        var profileViewToSave = new ProfileViewEntity(
-                null,
-                profile.getId(),
-                profileView.viewedProfileId(),
-                profileView.reaction()
+        boolean reacted = profileViewRepository.existsByViewerIdAndViewedProfileId(
+                authService.getCurrentUser().getId(),
+                viewedId
         );
 
+        if(reacted) {
+            throw new IllegalStateException("You have already reacted");
+        }
 
-        profileViewRepository.save(profileViewToSave);
+        var entityToSave = new ProfileViewEntity(
+                null,
+                authService.getCurrentUser().getId(),
+                viewedId,
+                reaction
+        );
 
-        return profileViewMapper.toDto(profileViewToSave);
+        profileViewRepository.save(entityToSave);
+
+        return profileViewMapper.toDto(entityToSave);
     }
 }

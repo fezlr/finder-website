@@ -2,6 +2,7 @@ package com.bsuir_finder.controller.api;
 
 import com.bsuir_finder.dto.Profile;
 import com.bsuir_finder.dto.ProfileView;
+import com.bsuir_finder.security.AuthService;
 import com.bsuir_finder.service.FormService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +17,12 @@ import java.util.List;
 public class FormApiController {
 
     private final FormService formService;
+    private final AuthService authService;
     private static final Logger log = LoggerFactory.getLogger(FormApiController.class);
 
-    public FormApiController(FormService formService) {
+    public FormApiController(FormService formService, AuthService authService) {
         this.formService = formService;
+        this.authService = authService;
     }
 
     @GetMapping("/forms")
@@ -36,6 +39,6 @@ public class FormApiController {
         log.info("Called reactionForm()");
         log.info("BODY = {}", profileView);
         return ResponseEntity.status(HttpStatus.OK)
-                .body(formService.reactionForm(profileView));
+                .body(formService.saveForm(profileView.viewedProfileId(), profileView.reaction()));
     }
 }

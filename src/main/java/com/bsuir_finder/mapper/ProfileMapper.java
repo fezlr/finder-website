@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 public class ProfileMapper {
     public Profile toDto(ProfileEntity profileEntity) {
         return new Profile(
+                profileEntity.getId(),
                 profileEntity.getFirstName(),
                 profileEntity.getLastName(),
                 profileEntity.getBirthDate(),
