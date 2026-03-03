@@ -12,7 +12,6 @@ import java.util.List;
 
 @Repository
 public interface ProfileRepository extends JpaRepository<ProfileEntity, Long> {
-
     List<ProfileEntity> findAllByIsFullTrueAndIdNot(Long id);
 
     List<ProfileEntity> findAllByFormStatus(FormStatus formStatus);

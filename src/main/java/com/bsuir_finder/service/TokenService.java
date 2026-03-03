@@ -8,7 +8,6 @@ import java.util.Optional;
 
 @Service
 public class TokenService {
-
     private final TokenRepository tokenRepository;
 
     public TokenService(TokenRepository tokenRepository) {

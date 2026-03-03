@@ -16,7 +16,6 @@ import java.util.Objects;
 
 @Service
 public class ProfileService {
-
     private static final Logger log = LoggerFactory.getLogger(ProfileService.class);
     private final AuthService authService;
     private final ProfileRepository profileRepository;

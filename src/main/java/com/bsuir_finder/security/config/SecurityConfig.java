@@ -15,7 +15,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
     private final CustomUserDetailsService userDetailsService;
 
     public SecurityConfig(CustomUserDetailsService userDetailsService) {
@@ -27,10 +26,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/api/**")
+                        .ignoringRequestMatchers("/api/**", "/instances")
                 )
                 .authorizeHttpRequests(
                         req -> req
+                                .requestMatchers("/admin/assets/**", "/admin/instances", "/admin/actuator/**").permitAll()
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers(
                                         "/register/**",
                                         "/css/**",
@@ -38,8 +39,10 @@ public class SecurityConfig {
                                         "/login/**",
                                         "/api/auth/register"
                                 ).permitAll()
-                                .anyRequest().authenticated()
+
+                                .anyRequest().hasRole("ADMIN")
                 )
+
                 .formLogin(req -> req
                         .loginPage("/login")
                         .failureUrl("/login?error")
@@ -50,7 +53,8 @@ public class SecurityConfig {
                 .logout(
                         Customizer.withDefaults()
                 )
-                .userDetailsService(userDetailsService);
+                .userDetailsService(userDetailsService)
+                .httpBasic(Customizer.withDefaults());
 
         return http.build();
     }

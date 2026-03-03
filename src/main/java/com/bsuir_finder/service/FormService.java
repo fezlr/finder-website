@@ -22,7 +22,6 @@ import java.util.List;
 
 @Service
 public class FormService {
-
     private final ProfileService profileService;
     private final ProfileRepository profileRepository;
     private final ProfileMapper profileMapper;

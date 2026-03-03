@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/form")
 public class FormPageController {
-
     private final FormService formService;
     private final AuthService authService;
 
@@ -32,8 +31,11 @@ public class FormPageController {
                                 .getProfile()
                                 .getId());
 
-
         log.info("BODY = {}", form);
+        if (form == null) {
+            return "redirect:/form-not-found";
+        }
+
         model.addAttribute("form", form);
         return "form";
     }

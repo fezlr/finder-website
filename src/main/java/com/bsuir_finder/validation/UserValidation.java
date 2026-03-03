@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserValidation {
-
     private final UserRepository userRepository;
 
     public UserValidation(UserRepository userRepository) {
@@ -24,7 +23,7 @@ public class UserValidation {
         }
     }
 
-    public void validateUsername(String username){
+    public void validateUsername(String username) {
         if(userRepository.existsByUsername(username)) {
             throw new IllegalArgumentException("Username already exists");
         }

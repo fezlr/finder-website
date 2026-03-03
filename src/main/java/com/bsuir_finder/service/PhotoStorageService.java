@@ -9,7 +9,6 @@ import java.util.Map;
 
 @Service
 public class PhotoStorageService {
-
     private final Cloudinary cloudinary;
 
     public PhotoStorageService(Cloudinary cloudinary) {
