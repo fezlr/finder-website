@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @Controller
-@RequestMapping("/form")
+@RequestMapping("user/form")
 public class FormPageController {
     private final FormService formService;
     private final AuthService authService;
@@ -33,7 +33,7 @@ public class FormPageController {
 
         log.info("BODY = {}", form);
         if (form == null) {
-            return "redirect:/form-not-found";
+            return "redirect:/user/form-not-found";
         }
 
         model.addAttribute("form", form);

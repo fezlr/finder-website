@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/profile/edit")
+@RequestMapping("user/profile/edit")
 public class ProfileEditPageController {
 
     private final AuthService authService;
