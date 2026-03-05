@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const photoFormData = new FormData();
                 photoFormData.append("file", photoInput.files[0]);
 
-                const photoResponse = await fetch("/api/edit/photo", {
+                const photoResponse = await fetch("/user/api/edit/photo", {
                     method: "POST",
                     headers: {
                         [csrfHeader]: csrfToken
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 formActivation: document.getElementById("formStatusCheck").checked
             };
 
-            const response = await fetch("/api/edit", {
+            const response = await fetch("/user/api/edit", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

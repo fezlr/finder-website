@@ -5,7 +5,7 @@ async function sendReaction(reaction) {
     const profileContainer = document.getElementById("form-container");
     const viewedProfileId = profileContainer.dataset.profileId;
 
-    const response = await fetch("api/form/react", {
+    const response = await fetch("/user/api/form/react", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

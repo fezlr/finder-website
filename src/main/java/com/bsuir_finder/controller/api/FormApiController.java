@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/form")
+@RequestMapping("/user/api/form")
 public class FormApiController {
 
     private final FormService formService;

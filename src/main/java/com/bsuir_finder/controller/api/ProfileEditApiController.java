@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Map;
 
 @RestController
-@RequestMapping("api/edit")
+@RequestMapping("/user/api/edit")
 public class ProfileEditApiController {
 
     private static final Logger log = LoggerFactory.getLogger(ProfileEditApiController.class);

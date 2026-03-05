@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/user/form-not-found")
-public class FormNotFoundPageController {
+@RequestMapping("/user/matches-not-found")
+public class MatchesNotFoundPageController {
     @GetMapping
-    public String formNotFoundPage() {
-        return "form-not-found";
+    public String matchesNotFoundPage() {
+        return "matches-not-found";
     }
 }

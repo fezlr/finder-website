@@ -2,6 +2,7 @@ package com.bsuir_finder.repository;
 
 import com.bsuir_finder.entity.ProfileEntity;
 import com.bsuir_finder.entity.ProfileViewEntity;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -24,6 +25,28 @@ public interface ProfileViewRepository extends JpaRepository<ProfileViewEntity, 
     List<ProfileEntity> findRandomUnreactedWithId(
             @Param("currentId") Long currentId,
             Pageable pageable);
+
+    @Query("""
+SELECT p
+FROM ProfileEntity p
+WHERE p.id <> :myId
+AND p.formStatus = 'ACTIVE'
+AND EXISTS (
+    SELECT 1
+    FROM ProfileViewEntity v1
+    WHERE v1.viewerId = :myId
+    AND v1.viewedProfileId = p.id
+    AND v1.reaction = 'LIKE'
+)
+AND EXISTS (
+    SELECT 1
+    FROM ProfileViewEntity v2
+    WHERE v2.viewerId = p.id
+    AND v2.viewedProfileId = :myId
+    AND v2.reaction = 'LIKE'
+)
+""")
+    Page<ProfileEntity> findMutualLikes(@Param("myId") Long myId, Pageable pageable);
 
     boolean existsByViewerIdAndViewedProfileId(Long viewerId, Long viewedProfileId);
 }

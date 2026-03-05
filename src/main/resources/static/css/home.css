@@ -48,11 +48,27 @@ body {
     margin-top: 8px;
 }
 
+.button-matches button {
+    width: 100%;
+    padding: 12px;
+    background: #5b8def;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
 
 .button-profile button:hover {
     background: #4a7be0;
 }
 
 .button-forms button:hover {
+    background: #4a7be0;
+}
+
+.button-matches button:hover {
     background: #4a7be0;
 }

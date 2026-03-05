@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Matches</title>
+    <link th:href="@{/css/match.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="match-container">
+    <div class="match-card">
+        <h2>Matches</h2>
+
+        <div th:each="form : ${forms}">
+            <ul>
+                <span th:text="${form.firstName}"></span>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

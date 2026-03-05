@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/auth")
+@RequestMapping("/user/api/auth")
 public class AuthApiController {
 
     private static final Logger log = LoggerFactory.getLogger(AuthApiController.class);
