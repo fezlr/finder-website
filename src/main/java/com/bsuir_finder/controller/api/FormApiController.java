@@ -1,7 +1,7 @@
 package com.bsuir_finder.controller.api;
 
-import com.bsuir_finder.dto.Profile;
-import com.bsuir_finder.dto.ProfileView;
+import com.bsuir_finder.model.dto.Profile;
+import com.bsuir_finder.model.dto.ProfileView;
 import com.bsuir_finder.security.AuthService;
 import com.bsuir_finder.service.FormService;
 import org.slf4j.Logger;

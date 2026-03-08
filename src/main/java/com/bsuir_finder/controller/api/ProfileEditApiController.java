@@ -1,7 +1,7 @@
 package com.bsuir_finder.controller.api;
 
 import com.bsuir_finder.service.PhotoStorageService;
-import com.bsuir_finder.dto.Profile;
+import com.bsuir_finder.model.dto.Profile;
 import com.bsuir_finder.service.ProfileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,9 +1,8 @@
-package com.bsuir_finder.entity;
+package com.bsuir_finder.model.domain;
 
-import com.bsuir_finder.dto.enums.TokenType;
+import com.bsuir_finder.model.dto.enums.TokenType;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Table(name = "token")

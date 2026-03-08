@@ -1,6 +1,6 @@
-package com.bsuir_finder.entity;
+package com.bsuir_finder.model.domain;
 
-import com.bsuir_finder.dto.enums.Reaction;
+import com.bsuir_finder.model.dto.enums.Reaction;
 import jakarta.persistence.*;
 
 @Table(name = "profile_views")

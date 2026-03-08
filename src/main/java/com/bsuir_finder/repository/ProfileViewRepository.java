@@ -1,7 +1,7 @@
 package com.bsuir_finder.repository;
 
-import com.bsuir_finder.entity.ProfileEntity;
-import com.bsuir_finder.entity.ProfileViewEntity;
+import com.bsuir_finder.model.domain.ProfileEntity;
+import com.bsuir_finder.model.domain.ProfileViewEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

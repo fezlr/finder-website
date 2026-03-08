@@ -1,7 +1,7 @@
 package com.bsuir_finder.mapper;
 
-import com.bsuir_finder.dto.ProfileView;
-import com.bsuir_finder.entity.ProfileViewEntity;
+import com.bsuir_finder.model.dto.ProfileView;
+import com.bsuir_finder.model.domain.ProfileViewEntity;
 import org.springframework.stereotype.Component;
 
 @Component

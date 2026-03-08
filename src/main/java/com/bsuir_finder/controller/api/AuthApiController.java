@@ -1,7 +1,7 @@
 package com.bsuir_finder.controller.api;
 
-import com.bsuir_finder.dto.Token;
-import com.bsuir_finder.dto.User;
+import com.bsuir_finder.model.dto.Token;
+import com.bsuir_finder.model.dto.User;
 import com.bsuir_finder.service.CustomUserDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

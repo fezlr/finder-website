@@ -1,6 +1,6 @@
 package com.bsuir_finder.security;
 
-import com.bsuir_finder.entity.UserEntity;
+import com.bsuir_finder.model.domain.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

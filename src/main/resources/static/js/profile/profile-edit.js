@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             alert("Profile saved successfully");
+            window.location.href = "/user/profile"
 
             if (photoData?.url) {
                 photoPreview.src = photoData.url + "?t=" + Date.now();

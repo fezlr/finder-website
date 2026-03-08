@@ -1,6 +1,6 @@
 package com.bsuir_finder.validation;
 
-import com.bsuir_finder.dto.User;
+import com.bsuir_finder.model.dto.User;
 import com.bsuir_finder.repository.UserRepository;
 import org.springframework.stereotype.Component;
 

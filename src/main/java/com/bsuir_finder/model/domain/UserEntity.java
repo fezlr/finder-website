@@ -1,11 +1,9 @@
-package com.bsuir_finder.entity;
+package com.bsuir_finder.model.domain;
 
-import com.bsuir_finder.dto.enums.Role;
-import com.bsuir_finder.dto.enums.UserStatus;
+import com.bsuir_finder.model.dto.enums.Role;
+import com.bsuir_finder.model.dto.enums.UserStatus;
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Table(name = "users")

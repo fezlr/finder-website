@@ -1,6 +1,6 @@
-package com.bsuir_finder.dto;
+package com.bsuir_finder.model.dto;
 
-import com.bsuir_finder.dto.enums.Gender;
+import com.bsuir_finder.model.dto.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.*;
 

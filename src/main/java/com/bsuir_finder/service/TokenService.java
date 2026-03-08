@@ -1,6 +1,6 @@
 package com.bsuir_finder.service;
 
-import com.bsuir_finder.entity.TokenEntity;
+import com.bsuir_finder.model.domain.TokenEntity;
 import com.bsuir_finder.repository.TokenRepository;
 import org.springframework.stereotype.Service;
 

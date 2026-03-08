@@ -1,9 +1,8 @@
-package com.bsuir_finder.dto;
+package com.bsuir_finder.model.dto;
 
-import com.bsuir_finder.dto.enums.Role;
-import com.bsuir_finder.dto.enums.UserStatus;
+import com.bsuir_finder.model.dto.enums.Role;
+import com.bsuir_finder.model.dto.enums.UserStatus;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
 
 import java.time.LocalDate;
 

@@ -1,12 +1,12 @@
 package com.bsuir_finder.service;
 
-import com.bsuir_finder.dto.User;
-import com.bsuir_finder.dto.enums.FormStatus;
-import com.bsuir_finder.dto.enums.Role;
-import com.bsuir_finder.dto.enums.UserStatus;
-import com.bsuir_finder.entity.ProfileEntity;
-import com.bsuir_finder.entity.TokenEntity;
-import com.bsuir_finder.entity.UserEntity;
+import com.bsuir_finder.model.dto.User;
+import com.bsuir_finder.model.dto.enums.FormStatus;
+import com.bsuir_finder.model.dto.enums.Role;
+import com.bsuir_finder.model.dto.enums.UserStatus;
+import com.bsuir_finder.model.domain.ProfileEntity;
+import com.bsuir_finder.model.domain.TokenEntity;
+import com.bsuir_finder.model.domain.UserEntity;
 import com.bsuir_finder.mapper.UserMapper;
 import com.bsuir_finder.repository.UserRepository;
 import com.bsuir_finder.security.CustomUserDetails;
@@ -22,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.UUID;
 
 @Service

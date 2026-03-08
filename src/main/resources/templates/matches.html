@@ -11,11 +11,23 @@
     <div class="match-card">
         <h2>Matches</h2>
 
-        <div th:each="form : ${forms}">
+        <div th:each="form : ${forms.content}">
             <ul>
                 <span th:text="${form.firstName}"></span>
             </ul>
         </div>
+
+        <!-- Кнопка Назад -->
+        <form th:if="${forms.hasPrevious()}" th:action="@{/user/matches}" method="get">
+            <input type="hidden" name="page" th:value="${forms.number - 1}">
+            <button type="submit" class="btn">← Назад</button>
+        </form>
+
+        <!-- Кнопка Вперед -->
+        <form th:if="${forms.hasNext()}" th:action="@{/user/matches}" method="get">
+            <input type="hidden" name="page" th:value="${forms.number + 1}">
+            <button type="submit" class="btn">Вперед →</button>
+        </form>
 
     </div>
 </div>

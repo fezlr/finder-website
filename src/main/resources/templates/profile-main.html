@@ -1,70 +1,93 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <title>Profile</title>
-        <link th:href="@{/css/profile-main.css}" rel="stylesheet">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Profile</title>
+    <link rel="stylesheet" th:href="@{/css/profile-main.css}">
+</head>
 
 <body>
 
 <div class="profile-root">
 
-    <div class="card">
-        <div class="photo-area">
+    <div class="left-column">
 
-            <img id="mainPhotoUrl"
-                 th:src="${profile.mainPhotoUrl != null} ? ${profile.mainPhotoUrl} : @{profile/avatar.jpg}"
-                 alt="Profile photo">
-            <div class="photo-badge" id="photoBadge" th:text="${profile.firstName ?: ''} + ' ' + ${profile.age ?: ''}"></div>
+        <div class="back-wrapper">
+            <a href="/user/home" class="btn back-btn">← Back</a>
         </div>
-        <div style="margin-top:14px">
-            <h3 style="margin:0 0 8px 0">About</h3>
-            <span th:text="${profile.aboutMe ?: ''}"></span>
+
+        <div class="card photo-card">
+
+            <div class="photo-area">
+
+                <img id="mainPhotoUrl"
+                     th:src="${profile.mainPhotoUrl != null} ? ${profile.mainPhotoUrl} : @{profile/avatar.jpg}"
+                     alt="Profile photo">
+
+                <div class="photo-gradient"></div>
+
+                <div class="photo-badge"
+                     th:text="${profile.firstName ?: ''} + ' ' + ${profile.age ?: ''}">
+                </div>
+
+            </div>
+
+            <div class="about-block">
+                <h3>About</h3>
+                <span th:text="${profile.aboutMe ?: ''}"></span>
+            </div>
+
         </div>
+
     </div>
 
-<div class="panel">
-    <div class="header">
-        <h1 th:if="${profile.firstName != null or profile.lastName != null}">
-            <span th:text="${profile.firstName ?: ' '} + ' ' + ${profile.lastName ?: ' '}"></span>
-            <input type="checkbox" th:checked="${profile.formActivation}" disabled />
 
-        </h1>
+    <div class="panel">
 
-        <div class="actions">
-            <a href="/user/profile/edit" class="btn" id="editBtn">Edit profile</a>
-        </div>
+        <div class="header">
 
-    </div>
+            <h1 th:if="${profile.firstName != null or profile.lastName != null}">
+                <span th:text="${profile.firstName ?: ''} + ' ' + ${profile.lastName ?: ''}"></span>
+                <input type="checkbox" th:checked="${profile.formActivation}" disabled>
+            </h1>
 
-    <div class="about">
-        <div class="info-grid">
-
-            <div class="info-row">
-                <label>First name</label>
-                <div th:text="${profile.firstName ?: ''}"></div>
-            </div>
-
-            <div class="info-row">
-                <label>Last name</label>
-                <div th:text="${profile.lastName ?: ''}"></div>
-            </div>
-
-            <div class="info-row">
-                <label>Birth date</label>
-                <div th:text="${profile.birthDate ?: ''}"></div>
-            </div>
-
-            <div class="info-row">
-                <label>City</label>
-                <div th:text="${profile.city ?: ''}"></div>
+            <div class="actions">
+                <a href="/user/profile/edit" class="btn">Edit profile</a>
             </div>
 
         </div>
+
+
+        <div class="about">
+
+            <div class="info-grid">
+
+                <div class="info-row">
+                    <label>First name</label>
+                    <div th:text="${profile.firstName ?: ''}"></div>
+                </div>
+
+                <div class="info-row">
+                    <label>Last name</label>
+                    <div th:text="${profile.lastName ?: ''}"></div>
+                </div>
+
+                <div class="info-row">
+                    <label>Birth date</label>
+                    <div th:text="${profile.birthDate ?: ''}"></div>
+                </div>
+
+                <div class="info-row">
+                    <label>City</label>
+                    <div th:text="${profile.city ?: ''}"></div>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-</div>
 
 </div>
 

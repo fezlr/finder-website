@@ -1,6 +1,6 @@
 package com.bsuir_finder.repository;
 
-import com.bsuir_finder.entity.TokenEntity;
+import com.bsuir_finder.model.domain.TokenEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

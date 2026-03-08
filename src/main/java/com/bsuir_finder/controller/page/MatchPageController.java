@@ -1,18 +1,24 @@
 package com.bsuir_finder.controller.page;
 
+import com.bsuir_finder.model.dto.Profile;
 import com.bsuir_finder.security.AuthService;
 import com.bsuir_finder.service.MatchService;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Slf4j
 @Controller
 @RequestMapping("/user/matches")
 public class MatchPageController {
+
+    private final Logger log = LoggerFactory.getLogger(MatchPageController.class);
 
     private MatchService matchService;
     private AuthService authService;
@@ -23,22 +29,18 @@ public class MatchPageController {
     }
 
     @GetMapping
-    public String matchPage(@RequestParam(defaultValue = "0") int page, Model model) {
+    public String matchPage(@PageableDefault(size = 20) Pageable pageable, Model model) {
         log.info("Called matchPage()");
-
         Long id = authService.getCurrentUser().getProfile().getId();
-        var matchedForms = matchService.findMatches(id, page);
+        Page<Profile> matchedForms = matchService.findMatches(id, pageable);
 
-        //TODO: refactor these lines of if-statement
-        if (matchedForms == null || matchedForms.isEmpty()) {
+        if (matchedForms.getTotalElements() == 0) {
             return "redirect:/user/matches-not-found";
         }
 
         log.info("BODY = {}", matchedForms);
-        log.info("PAGE = {}", page);
-
+        log.info("PAGE = {}", pageable);
         model.addAttribute("forms", matchedForms);
-        model.addAttribute("matchesPage", page);
 
         return "matches";
     }

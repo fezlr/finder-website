@@ -1,6 +1,6 @@
 package com.bsuir_finder.repository;
 
-import com.bsuir_finder.entity.UserEntity;
+import com.bsuir_finder.model.domain.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,7 @@
 package com.bsuir_finder.repository;
 
-import com.bsuir_finder.dto.enums.FormStatus;
-import com.bsuir_finder.dto.enums.Gender;
-import com.bsuir_finder.entity.ProfileEntity;
+import com.bsuir_finder.model.dto.enums.FormStatus;
+import com.bsuir_finder.model.domain.ProfileEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

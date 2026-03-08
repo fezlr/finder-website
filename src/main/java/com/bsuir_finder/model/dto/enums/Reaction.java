@@ -1,4 +1,4 @@
-package com.bsuir_finder.dto.enums;
+package com.bsuir_finder.model.dto.enums;
 
 public enum Reaction {
     LIKE,

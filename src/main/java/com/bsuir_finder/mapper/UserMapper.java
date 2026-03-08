@@ -1,15 +1,8 @@
 package com.bsuir_finder.mapper;
 
-import com.bsuir_finder.dto.User;
-import com.bsuir_finder.dto.enums.Role;
-import com.bsuir_finder.dto.enums.UserStatus;
-import com.bsuir_finder.entity.ProfileEntity;
-import com.bsuir_finder.entity.ProfileViewEntity;
-import com.bsuir_finder.entity.UserEntity;
+import com.bsuir_finder.model.dto.User;
+import com.bsuir_finder.model.domain.UserEntity;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @Component
 public class UserMapper {

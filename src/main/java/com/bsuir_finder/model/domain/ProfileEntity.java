@@ -1,11 +1,10 @@
-package com.bsuir_finder.entity;
+package com.bsuir_finder.model.domain;
 
-import com.bsuir_finder.dto.enums.FormStatus;
-import com.bsuir_finder.dto.enums.Gender;
+import com.bsuir_finder.model.dto.enums.FormStatus;
+import com.bsuir_finder.model.dto.enums.Gender;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 
 @Table(name = "profiles")

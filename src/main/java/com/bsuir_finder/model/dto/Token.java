@@ -1,8 +1,7 @@
-package com.bsuir_finder.dto;
+package com.bsuir_finder.model.dto;
 
-import com.bsuir_finder.dto.enums.TokenType;
+import com.bsuir_finder.model.dto.enums.TokenType;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
 
 import java.time.LocalDateTime;
 

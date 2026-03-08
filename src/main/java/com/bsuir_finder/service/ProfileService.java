@@ -1,8 +1,8 @@
 package com.bsuir_finder.service;
 
-import com.bsuir_finder.dto.Profile;
-import com.bsuir_finder.dto.enums.FormStatus;
-import com.bsuir_finder.entity.ProfileEntity;
+import com.bsuir_finder.model.dto.Profile;
+import com.bsuir_finder.model.dto.enums.FormStatus;
+import com.bsuir_finder.model.domain.ProfileEntity;
 import com.bsuir_finder.mapper.ProfileMapper;
 import com.bsuir_finder.repository.ProfileRepository;
 import com.bsuir_finder.security.AuthService;

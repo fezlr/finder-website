@@ -1,12 +1,11 @@
 package com.bsuir_finder.service;
 
-import com.bsuir_finder.dto.Profile;
-import com.bsuir_finder.dto.ProfileView;
-import com.bsuir_finder.dto.User;
-import com.bsuir_finder.dto.enums.FormStatus;
+import com.bsuir_finder.model.dto.Profile;
+import com.bsuir_finder.model.dto.ProfileView;
+import com.bsuir_finder.model.dto.enums.FormStatus;
 
-import com.bsuir_finder.dto.enums.Reaction;
-import com.bsuir_finder.entity.ProfileViewEntity;
+import com.bsuir_finder.model.dto.enums.Reaction;
+import com.bsuir_finder.model.domain.ProfileViewEntity;
 import com.bsuir_finder.mapper.ProfileMapper;
 import com.bsuir_finder.mapper.ProfileViewMapper;
 import com.bsuir_finder.mapper.UserMapper;
@@ -14,7 +13,6 @@ import com.bsuir_finder.repository.ProfileRepository;
 import com.bsuir_finder.repository.ProfileViewRepository;
 import com.bsuir_finder.security.AuthService;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

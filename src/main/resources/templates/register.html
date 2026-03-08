@@ -11,6 +11,11 @@
 <body>
 <div class="register-container">
     <div class="register-card">
+
+        <div th:if="${param.error}" class="error-box">
+            Username or email are already exist
+        </div>
+
         <h2>Create account</h2>
 
         <form onsubmit="save(); return false;">

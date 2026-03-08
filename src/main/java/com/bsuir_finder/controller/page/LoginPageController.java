@@ -1,16 +1,16 @@
 package com.bsuir_finder.controller.page;
 
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Slf4j
 @Controller
-@RequestMapping("user/login")
+@RequestMapping("/user/login")
 public class LoginPageController {
+    private static final Logger log = LoggerFactory.getLogger(LoginPageController.class);
+
     @GetMapping
     public String loginPage() {
         log.info("Called loginPage()");
