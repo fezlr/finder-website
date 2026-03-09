@@ -2,30 +2,36 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Form</title>
-    <link th:href="@{/css/home.css}" rel="stylesheet">
+    <title>Forms</title>
+    <link th:href="@{/css/form.css}" rel="stylesheet">
 </head>
-
 <body>
-<div class="form-container" id="form-container" th:data-profile-id="${form.id}">
-    <div class="form-card">
-        <ul>
-                <span th:text="${form.firstName}"></span>
-                <span th:text="${form.lastName}"></span>
-                <span th:text="${form.age}"></span>
-                <span th:text="${form.gender}"></span>
-                <span th:text="${form.aboutMe}"></span>
-                <span th:text="${form.mainPhotoUrl}"></span>
-        </ul>
+
+<div class="form-root">
+    <div class="card-stack" id="form-container" th:data-profile-id="${form.id}">
+        <div class="form-card">
+            <div class="card-media" th:style="'background-image:url(' + ${form.mainPhotoUrl} + ')'">
+                <div class="card-overlay">
+                    <div class="badge">
+                        <span class="name" th:text="${form.firstName} + ' ' + ${form.lastName}"></span>
+                        <span class="meta" th:text="${form.age} + ' • ' + ${form.gender}"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="about" th:text="${form.aboutMe}"></p>
+            </div>
+        </div>
     </div>
 
-    <button id="like_btn">Like</button>
-    <button id="dislike_btn">Dislike</button>
-
+    <div class="controls">
+        <button id="dislike_btn" class="btn circle">✕</button>
+        <button id="like_btn" class="btn circle">❤</button>
+    </div>
 </div>
 
 <input type="hidden" id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
-</body>
 <script th:src="@{/js/form/form.js}"></script>
+</body>
 </html>

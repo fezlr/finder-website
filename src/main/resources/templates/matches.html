@@ -3,33 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Matches</title>
-    <link th:href="@{/css/match.css}" rel="stylesheet">
+    <link th:href="@{/css/matches.css}" rel="stylesheet">
 </head>
 <body>
 
-<div class="match-container">
-    <div class="match-card">
-        <h2>Matches</h2>
+<div class="match-wrapper">
 
-        <div th:each="form : ${forms.content}">
-            <ul>
-                <span th:text="${form.firstName}"></span>
-            </ul>
+    <header class="match-header">
+        <a href="/user/home" class="back-btn" title="Назад">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+                <path d="M15 6L9 12l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+        <h1>Matches</h1>
+    </header>
+
+    <main class="match-container">
+        <div class="match-card">
+            <h2>Ваша подборка</h2>
+
+            <div class="matches-list" th:each="form : ${forms.content}">
+                <div class="match-item">
+                    <img th:src="${form.mainPhotoUrl}" alt="photo">
+                    <div class="match-info">
+                        <div class="match-top">
+                            <span class="match-name" th:text="${form.firstName} + ' ' + ${form.lastName}">Имя Фамилия</span>
+                            <span class="match-age" th:text="${form.age}">25</span>
+                        </div>
+                        <p class="match-bio" th:text="${form.aboutMe}">Короткая самопрезентация — интересы, хобби...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <form th:if="${forms.hasPrevious()}" th:action="@{/user/matches}" method="get" class="pag-form">
+                    <input type="hidden" name="page" th:value="${forms.number - 1}">
+                    <button type="submit" class="btn outline">← Назад</button>
+                </form>
+
+                <form th:if="${forms.hasNext()}" th:action="@{/user/matches}" method="get" class="pag-form">
+                    <input type="hidden" name="page" th:value="${forms.number + 1}">
+                    <button type="submit" class="btn primary">Вперед →</button>
+                </form>
+            </div>
         </div>
-
-        <!-- Кнопка Назад -->
-        <form th:if="${forms.hasPrevious()}" th:action="@{/user/matches}" method="get">
-            <input type="hidden" name="page" th:value="${forms.number - 1}">
-            <button type="submit" class="btn">← Назад</button>
-        </form>
-
-        <!-- Кнопка Вперед -->
-        <form th:if="${forms.hasNext()}" th:action="@{/user/matches}" method="get">
-            <input type="hidden" name="page" th:value="${forms.number + 1}">
-            <button type="submit" class="btn">Вперед →</button>
-        </form>
-
-    </div>
+    </main>
 </div>
 
 </body>

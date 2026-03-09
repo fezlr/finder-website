@@ -1,74 +1,95 @@
 * {
-    box-sizing: border-box;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-}
+ box-sizing: border-box; font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+ }
+
+html, body { height: 100%; margin: 0; }
 
 body {
-    margin: 0;
-    height: 100vh;
-    background: #f5f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #24324a;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
 .home-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28px;
 }
 
 .home-card {
-    width: 360px;
-    background: #ffffff;
-    padding: 32px;
-    border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  width: min(480px, 94%);
+  padding: 40px 34px;
+  border-radius: 18px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+
+  text-align: center;
+  transform-origin: center;
+  animation: cardAppear 420ms cubic-bezier(.2,.9,.3,1);
 }
 
-.button-profile button {
-    width: 100%;
-    padding: 12px;
-    background: #5b8def;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    cursor: pointer;
-    margin-top: 8px;
+@keyframes cardAppear {
+  from { opacity: 0; transform: translateY(18px) scale(.995); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.button-forms button {
-    width: 100%;
-    padding: 12px;
-    background: #5b8def;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    cursor: pointer;
-    margin-top: 8px;
+.home-card h1 {
+  margin: 0 0 18px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #24324a;
 }
 
-.button-matches button {
-    width: 100%;
-    padding: 12px;
-    background: #5b8def;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    cursor: pointer;
-    margin-top: 8px;
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 6px;
 }
 
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  min-height: 48px;
 
-.button-profile button:hover {
-    background: #4a7be0;
+  color: #045b57;
+
+  border: 1px solid rgba(255,255,255,0.7);
+  backdrop-filter: blur(6px);
+
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
 
-.button-forms button:hover {
-    background: #4a7be0;
+.home-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(36,50,74,0.10);
+  filter: saturate(1.04);
 }
 
-.button-matches button:hover {
-    background: #4a7be0;
+.home-btn:active {
+  transform: translateY(-1px) scale(.995);
+  box-shadow: 0 6px 18px rgba(36,50,74,0.06);
+}
+
+@media (max-width: 520px) {
+  .home-card { padding: 28px 18px; border-radius: 14px; }
+  .home-card h1 { font-size: 22px; }
+  .home-btn { font-size: 15px; min-height: 44px; padding: 12px; }
 }

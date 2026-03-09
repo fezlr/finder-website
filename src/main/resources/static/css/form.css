@@ -1,0 +1,118 @@
+:root {
+    --bg: #0f1724;
+    --card: #ffffff;
+    --accent: #6aa8ff;
+    --success: #30d39a;
+    --danger: #ff6b6b;
+    --radius: 16px;
+    --shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(180deg, #071126 0%, #071a2b 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #fff;
+}
+
+.form-root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.card-stack {
+    width: 360px;
+    height: 600px;
+    position: relative;
+    perspective: 1500px;
+}
+
+.form-card {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: var(--card);
+    color: #0f1724;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease;
+}
+
+.card-media {
+    height: 65%;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 23, 36, 0.6), transparent 50%);
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+}
+
+.badge .name {
+    display: block;
+    font-weight: 700;
+    font-size: 20px;
+    color: #fff;
+}
+
+.badge .meta {
+    display: block;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 2px;
+}
+
+.card-body {
+    padding: 16px;
+    flex: 1;
+    font-size: 14px;
+    color: #1a1a1a;
+}
+
+.controls {
+    display: flex;
+    gap: 24px;
+}
+
+.btn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn.circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 24px;
+    color: #fff;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 24px rgba(45, 100, 255, 0.12);
+}
+
+.btn.circle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 36px rgba(45, 100, 255, 0.16);
+}
+
+.btn.circle:active {
+    transform: scale(0.95);
+}

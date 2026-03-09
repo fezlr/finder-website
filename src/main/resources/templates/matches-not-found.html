@@ -2,16 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Matches</title>
-    <link th:href="@{/css/match.css}" rel="stylesheet">
+    <title>No Matches</title>
+    <link th:href="@{/css/matches-not-found.css}" rel="stylesheet">
 </head>
 <body>
-
 <div class="match-container">
-    <div class="match-card">
-        <h2>Matches пока что нет =(</h2>
+    <div class="match-card empty">
+        <p>Нет совпадений</p>
+
+        <div class="back-wrapper">
+            <a href="/user/home" class="back-btn">← Back</a>
+        </div>
+
     </div>
 </div>
-
 </body>
 </html>
