@@ -54,7 +54,7 @@
             <textarea id="instagramUsername" th:text="${profile.instagramUsername ?: ''}" placeholder="Instagram"></textarea>
 
             <div class="checkbox-group">
-                <input type="checkbox" id="formStatusCheck" name="formStatusCheck" th:checked="${profile.formStatus == T(com.bsuir_finder.model.dto.enums.FormStatus).ACTIVE}">
+                <input type="checkbox" id="formStatusCheck" name="formStatusCheck" th:checked="${profile.formStatus == T(com.finder.model.dto.enums.FormStatus).ACTIVE}">
                 <label for="formStatusCheck">Activate a form</label>
             </div>
 
