@@ -27,10 +27,15 @@
                     <img th:src="${form.mainPhotoUrl}" alt="photo">
                     <div class="match-info">
                         <div class="match-top">
-                            <span class="match-name" th:text="${form.firstName} + ' ' + ${form.lastName}">Имя Фамилия</span>
-                            <span class="match-age" th:text="${form.age}">25</span>
+                            <span class="match-name" th:text="${form.firstName} + ' ' + ${form.lastName}"></span>
+                            <span class="match-age" th:text="${form.age}"></span>
+
+                            <!--Added-->
+                            <span class="match-telegram" th:text="${form.telegramUsername ?: ''}"></span>
+                            <span class="match-instagram" th:text="${form.instagramUsername ?: ''}"></span>
+
                         </div>
-                        <p class="match-bio" th:text="${form.aboutMe}">Короткая самопрезентация — интересы, хобби...</p>
+                        <p class="match-bio" th:text="${form.aboutMe}"></p>
                     </div>
                 </div>
             </div>

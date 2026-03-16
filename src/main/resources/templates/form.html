@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forms</title>
     <link th:href="@{/css/form.css}" rel="stylesheet">
 </head>
@@ -9,7 +10,12 @@
 
 <div class="form-root">
     <div class="card-stack" id="form-container" th:data-profile-id="${form.id}">
-        <div class="form-card">
+        <div class="form-card" id="swipe-card">
+
+            <!-- Swipe stamps -->
+            <span class="stamp like-stamp">Like</span>
+            <span class="stamp dislike-stamp">Nope</span>
+
             <div class="card-media" th:style="'background-image:url(' + ${form.mainPhotoUrl} + ')'">
                 <div class="card-overlay">
                     <div class="badge">
@@ -18,9 +24,11 @@
                     </div>
                 </div>
             </div>
+
             <div class="card-body">
                 <p class="about" th:text="${form.aboutMe}"></p>
             </div>
+
         </div>
     </div>
 
@@ -28,6 +36,8 @@
         <button id="dislike_btn" class="btn circle">✕</button>
         <button id="like_btn" class="btn circle">❤</button>
     </div>
+
+    <span class="swipe-hint">swipe right to like · swipe left to pass</span>
 </div>
 
 <input type="hidden" id="csrfToken" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />

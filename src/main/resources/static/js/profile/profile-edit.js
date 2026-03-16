@@ -1,5 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    (function addBackButton() {
+        const card = document.querySelector(".profile-card");
+        if (!card) return;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "back-btn";
+        btn.innerHTML = "← Back";
+        btn.setAttribute("aria-label", "Назад");
+        btn.addEventListener("click", () => {
+            if (window.history.length > 1) window.history.back();
+            else window.location.href = "/user/profile";
+        });
+        card.prepend(btn);
+    })();
+
     const form = document.getElementById("profile-form");
     const photoInput = document.getElementById("photoInput");
     const photoPreview = document.getElementById("mainPhotoUrl");
