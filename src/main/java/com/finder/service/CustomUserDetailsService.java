@@ -44,6 +44,97 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Override
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var user = userRepository.findByUsername(username)
                 .orElseThrow(() ->
@@ -104,12 +195,17 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         var userToSave = userRepository.save(entityToSave);
 
-        tokenService.save(confirmationToken);
+
         emailService.send(userToCreate.email(), confirmationToken.getToken());
+        tokenService.save(confirmationToken);
+
+
+        log.info("CALLED REGISTERUSER ALSO SAVING TO BD");
 
         return mapper.toDto(userToSave);
     }
 
+    @Transactional
     public void confirmToken(String token) {
         log.info("Called confirmToken");
 
@@ -131,11 +227,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         enableUser(confirmedToken.getUser());
     }
 
+    @Transactional
     private void enableUser(UserEntity user) {
         user.setEnabled(true);
         userRepository.save(user);
     }
 
+    @Transactional
     private void approvedUser(UserEntity user) {
         user.setUserStatus(UserStatus.APPROVED);
     }

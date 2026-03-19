@@ -16,6 +16,6 @@ async function save() {
         alert("Check your email to confirm registration");
     } else {
         const error = await response.text();
-        window.location.href = "/user/register?error";
+        window.location.href = "/user/register?error";1
     }
 }

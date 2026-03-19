@@ -3,6 +3,8 @@ package com.finder.controller.page;
 import com.finder.security.AuthService;
 import com.finder.service.FormService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/user/form")
 public class FormPageController {
+    private static final Logger log = LoggerFactory.getLogger(FormPageController.class);
     private final FormService formService;
     private final AuthService authService;
 

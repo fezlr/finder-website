@@ -46,6 +46,7 @@ public class FormService {
                 .toList();
     }
 
+    @Transactional
     public Profile findRandomUnreactedFormById(Long id) {
         var pageable = PageRequest.of(0, 1);
         var randomProfile = profileViewRepository.findRandomUnreactedWithId(id, pageable);

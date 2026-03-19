@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Select a photo")
             btn.disabled = false;
             return;
-        }4
+        }
 
         try {
             if (photoInput.files.length > 0) {

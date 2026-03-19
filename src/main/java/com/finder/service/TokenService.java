@@ -3,6 +3,7 @@ package com.finder.service;
 import com.finder.model.domain.TokenEntity;
 import com.finder.repository.TokenRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ public class TokenService {
         return tokenRepository.findByToken(token);
     }
 
+    @Transactional
     public TokenEntity save(TokenEntity token) {
         return tokenRepository.save(token);
     }

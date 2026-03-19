@@ -20,13 +20,13 @@ public class EmailService {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(to);
             //TODO: add spring variables without hard-code
-            message.setFrom("atm54423@gmail.com");
+            message.setFrom("Finder");
             message.setSubject("Confirm your email");
             String messageBody = """
                 
                 Thank you for registration. Please confirm your email.
                 
-                http://localhost:8080/register/confirmToken?token=%s
+                http://localhost:8080/user/register/confirmToken?token=%s
                 
                 """.formatted(token);
             message.setText(messageBody);
