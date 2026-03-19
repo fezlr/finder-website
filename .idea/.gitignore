@@ -6,4 +6,8 @@ HELP.md
 mvnw
 mvnw.cmd
 application.properties
-idea/
+.idea/
+docker-compose.yml
+HELP.md
+mvnw
+mvnw.cmd
