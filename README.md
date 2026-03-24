@@ -23,6 +23,6 @@ A full-featured dating web application built with Java and Spring Boot. Users si
 - CSS
 
 # License
-Finder is licensed under the PolyForm Noncommercial License 1.0.0. [See LICENSE for more information](https://github.com/fezlr/finder-website/LICENSE.md)
+Finder Website is licensed under the PolyForm Noncommercial License 1.0.0. [See LICENSE for more information](https://github.com/fezlr/finder-website/blob/main/LICENSE)
 
 Currently in development
